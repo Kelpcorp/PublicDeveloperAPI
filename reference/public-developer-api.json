@@ -16,16 +16,16 @@
   },
   "servers": [
     {
-      "url": "http://api.kelpstone.com/public/v1",
+      "url": "http://api.kelpstone.com/public/v1/",
       "description": "Primary"
     },
     {
-      "url": "https://api.kelpstone.com/public/v1",
+      "url": "https://api.kelpstone.com/public/v1/",
       "description": "Secondary (Primary SSL)"
     },
     {
-      "url": "https://maintenance.kelpstone.com/api",
-      "description": "Specialty Maintenance Redirection"
+      "url": "https://maintenance.kelpstone.com/api/v1/",
+      "description": "Maintenance Limited Data API"
     }
   ],
   "paths": {
@@ -293,17 +293,17 @@
     },
     "securitySchemes": {
       "Kelpauth® Developer Key (Query)": {
-        "name": "Kelpauth® Developer Key - Query",
+        "name": "kadkq",
         "type": "apiKey",
         "in": "query"
       },
       "Kelpauth® Developer Key (Header)": {
-        "name": "Kelpauth® Developer Key - Header",
+        "name": "Kelpauth-Dkh",
         "type": "apiKey",
-        "in": "query"
+        "in": "header"
       },
       "Kelpauth® Developer Key (Cookie)": {
-        "name": "Kelpauth® Developer Key - Cookie",
+        "name": "kelp_auth_dkc",
         "type": "apiKey",
         "in": "cookie",
         "description": ""
