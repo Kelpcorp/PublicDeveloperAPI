@@ -1,0 +1,72 @@
+{
+  "title": "UniversalUserIdentifier",
+  "type": "object",
+  "x-tags": [
+    "user",
+    "identifier",
+    "global",
+    "universal"
+  ],
+  "description": "An identifier string & object for all Kelp-anything related profiles, used to aim back to a global stem account.",
+  "properties": {
+    "id": {
+      "type": "number",
+      "example": 182339,
+      "default": 0,
+      "minimum": 1,
+      "description": "An identifier for the row in the database as well as the primary key for other objects to relate them to the same human behind the computer.",
+      "readOnly": true
+    },
+    "userName": {
+      "type": "string",
+      "description": "A changeable human readable identifier that is exclusive (while they have it) to a user, that can be used to search for them on diffrent Kelp sites, friend them, etc.\n\nThis defaults to their identifier on Minecraft, Discord (\"maccaroon2910\" from \"Maccaroon#2910\", Spotify, email beginning (\"johndoe\" from \"johndoe@gmail.com\"), depending on what they use to sign up initally for the Kelpauth global platform."
+    },
+    "security": {
+      "type": "object",
+      "required": [
+        "hasAccess"
+      ],
+      "properties": {
+        "hasAccess": {
+          "type": "boolean"
+        },
+        "accessHistory": {
+          "type": "string"
+        },
+        "personalPreferences": {
+          "type": "string"
+        },
+        "currentDevices": {
+          "type": "string"
+        },
+        "2faOptions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "./2faDestinationInsert.json"
+          }
+        },
+        "": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "./2faDestinationInsert.json"
+          }
+        },
+        "secured": {
+          "type": "object",
+          "properties": {
+            "": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "userName",
+    "security"
+  ]
+}

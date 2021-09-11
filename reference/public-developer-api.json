@@ -6,7 +6,7 @@
     "summary": "The public endpoint group for developers attempting to use Kelpstone's statistic and integration API models.",
     "contact": {
       "name": "Nathanna (a.k.a. \"Piggy\" or \"Tonya)",
-      "url": "https://kelpstone.com/forums/players/pigerly/dm?from=apisite&subject=Your title here. (API Inquiry)"
+      "url": "https://kelpstone.com/forums/players/pigerly/dm?from=apisite&subject=Your%20title%20here.%20%28API%20Inquiry%29&placeholder_2=Describe%20the%20problem%20with%20detail%20and%20show%20code%20or%20urls%20used%20to%20enduce%20the%20API%20erro.%20If%20your%20using%20a%20authorized%20API%2C%20theres%20no%20need%20to%20include%20the%20keys%20or%20values%2C%20unless%20your%20using%20someone%20elses%20Kelpauth%20account%2C%20it%20is%20linked%20to%20your%20Kelpforums%20account."
     },
     "termsOfService": "https://kelpstone.com/legal/policies/terms-of-service",
     "license": {

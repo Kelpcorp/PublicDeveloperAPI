@@ -1,0 +1,91 @@
+{
+  "title": "MojangNameHistoryInsert",
+  "type": "object",
+  "x-tags": [
+    "mojang",
+    "global",
+    "user",
+    "profile",
+    "history",
+    "insert"
+  ],
+  "properties": {
+    "record": {
+      "type": "number",
+      "example": 2831,
+      "description": "An internally-set record indentifier, exclusive to the record of name change stored in Kelpstone's cache of Mojang's API results for the player.",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The player's non-case-sensitive username on Mojang/Minecraft.",
+      "example": "johndoe",
+      "readOnly": true
+    },
+    "nameFancy": {
+      "type": "string",
+      "description": "The player's name stylized with their choice of capitalization upon registration.",
+      "example": "JohnDoe"
+    },
+    "previous": {
+      "oneOf": [
+        {
+          "type": "string",
+          "properties": {},
+          "behavior": "Read Only",
+          "description": "The previous result from the player's renaming array."
+        },
+        {
+          "$ref": "./MojangNameHistoryInsert.json"
+        }
+      ]
+    },
+    "next": {
+      "oneOf": [
+        {
+          "type": "string",
+          "properties": {},
+          "behavior": "Read Only"
+        },
+        {
+          "$ref": "./MojangNameHistoryInsert.json"
+        }
+      ],
+      "description": "The next result from the player's renaming array."
+    },
+    "dateline": {
+      "type": "object",
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "readOnly": true
+        },
+        "end": {
+          "type": [
+            "string",
+            "boolean"
+          ],
+          "description": "Either a Timestamp or \"true\" if still using.",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "nameFancy",
+    "previous",
+    "next",
+    "dateline"
+  ],
+  "description": "An array's object for name change history, replys with a result from Mojang's public API or Kelpstone's cached copy."
+}

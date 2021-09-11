@@ -1,0 +1,37 @@
+{
+  "title": "KelpstonePlayerUser",
+  "type": "object",
+  "x-tags": [
+    "global",
+    "user",
+    "identifier",
+    "profile",
+    "universal"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "./UniversalUserIdentifier.json"
+    },
+    "name": {
+      "type": "object",
+      "properties": {
+        "nickName": {
+          "type": "string"
+        },
+        "player": {
+          "type": "string"
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": ""
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "name"
+  ]
+}

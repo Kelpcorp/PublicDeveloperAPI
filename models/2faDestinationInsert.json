@@ -1,0 +1,55 @@
+{
+  "title": "2faDestinationInsert",
+  "type": "object",
+  "properties": {
+    "record": {
+      "type": "integer",
+      "minimum": 1,
+      "example": 29319,
+      "readOnly": true
+    },
+    "internalExternalAPIMethodNumber": {
+      "type": "integer",
+      "readOnly": true
+    },
+    "hasAccess": {
+      "type": "boolean",
+      "default": false
+    },
+    "secured": {
+      "type": "object",
+      "properties": {
+        "lastUsedCode": {
+          "type": [
+            "string",
+            "integer"
+          ],
+          "readOnly": true
+        },
+        "lastTimeGenerated": {
+          "type": [
+            "string",
+            "boolean"
+          ],
+          "format": "date-time",
+          "readOnly": true
+        },
+        "codeHasBeenUsedYet": {
+          "type": "boolean",
+          "default": false
+        },
+        "completed": {
+          "type": "boolean",
+          "deprecated": true,
+          "default": false,
+          "description": "Prequel to \"codeHasBeenUsedYet\"; too generic."
+        }
+      }
+    }
+  },
+  "required": [
+    "record",
+    "internalExternalAPIMethodNumber",
+    "hasAccess"
+  ]
+}
