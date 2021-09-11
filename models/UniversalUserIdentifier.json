@@ -30,23 +30,7 @@
         "hasAccess": {
           "type": "boolean"
         },
-        "accessHistory": {
-          "type": "string"
-        },
-        "personalPreferences": {
-          "type": "string"
-        },
-        "currentDevices": {
-          "type": "string"
-        },
         "2faOptions": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "$ref": "./2faDestinationInsert.json"
-          }
-        },
-        "": {
           "type": "array",
           "uniqueItems": true,
           "items": {
@@ -56,8 +40,20 @@
         "secured": {
           "type": "object",
           "properties": {
-            "": {
+            "accessHistory": {
               "type": "string"
+            },
+            "personalPreferences": {
+              "type": "string"
+            },
+            "currentDevices": {
+              "type": "string"
+            },
+            "2faOptions": {
+              "type": "array",
+              "items": {
+                "$ref": "./2faDestinationInsert.json"
+              }
             }
           }
         }
