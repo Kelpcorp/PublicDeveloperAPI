@@ -1,6 +1,7 @@
 {
   "title": "2faDestinationInsert",
   "type": "object",
+  "description": "A two fractor authorization routing destination array object, used internally and semi-externally by the Kelpauth program; developers can also add or remove these object using an user-authorized-developer-app with proper credentials at the time.",
   "properties": {
     "record": {
       "type": "integer",
@@ -8,9 +9,8 @@
       "example": 29319,
       "readOnly": true
     },
-    "internalExternalAPIMethodNumber": {
-      "type": "integer",
-      "readOnly": true
+    "owner": {
+      "type": "string"
     },
     "hasAccess": {
       "type": "boolean",
@@ -18,12 +18,14 @@
     },
     "secured": {
       "type": "object",
+      "description": "This blob of data can only be accessed if the target user has authorized your developer app and your using the generated token(s) derived from that exchange, in addition to your developer apps api key.",
       "properties": {
         "lastUsedCode": {
           "type": [
             "string",
             "integer"
           ],
+          "description": "The generated data that the user needs to enter from their method's authorization app.",
           "readOnly": true
         },
         "lastTimeGenerated": {
@@ -32,11 +34,13 @@
             "boolean"
           ],
           "format": "date-time",
+          "description": "When the code was generated; mainly used for cooldowns on the front end.",
           "readOnly": true
         },
         "codeHasBeenUsedYet": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "description": "Has the user entered the code on their side? This lets other login instances know that the code is no longer fresh from the cyber-oven."
         },
         "completed": {
           "type": "boolean",
@@ -45,11 +49,27 @@
           "description": "Prequel to \"codeHasBeenUsedYet\"; too generic."
         }
       }
+    },
+    "internal_metadata": {
+      "type": "object",
+      "description": "You can ignore this, unless for some odd reason you'd like to use this data for your own personal caching purpouses. 😏",
+      "required": [
+        "external_2fa_query_method"
+      ],
+      "properties": {
+        "external_2fa_query_method": {
+          "type": "integer"
+        }
+      }
     }
   },
   "required": [
     "record",
-    "internalExternalAPIMethodNumber",
-    "hasAccess"
+    "owner",
+    "hasAccess",
+    "internal_metadata"
+  ],
+  "x-tags": [
+    "2fa"
   ]
 }

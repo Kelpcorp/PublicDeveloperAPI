@@ -1,13 +1,6 @@
 {
   "title": "KelpstonePlayerUser",
   "type": "object",
-  "x-tags": [
-    "global",
-    "user",
-    "identifier",
-    "profile",
-    "universal"
-  ],
   "properties": {
     "id": {
       "$ref": "./UniversalUserIdentifier.json"
@@ -33,5 +26,8 @@
   "required": [
     "id",
     "name"
+  ],
+  "x-tags": [
+    "kelpstone"
   ]
 }

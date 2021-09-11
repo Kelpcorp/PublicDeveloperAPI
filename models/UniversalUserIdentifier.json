@@ -1,12 +1,6 @@
 {
   "title": "UniversalUserIdentifier",
   "type": "object",
-  "x-tags": [
-    "user",
-    "identifier",
-    "global",
-    "universal"
-  ],
   "description": "An identifier string & object for all Kelp-anything related profiles, used to aim back to a global stem account.",
   "properties": {
     "id": {
@@ -64,5 +58,8 @@
     "id",
     "userName",
     "security"
+  ],
+  "x-tags": [
+    "global"
   ]
 }

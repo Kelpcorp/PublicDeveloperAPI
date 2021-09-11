@@ -1,14 +1,6 @@
 {
   "title": "MojangNameHistoryInsert",
   "type": "object",
-  "x-tags": [
-    "mojang",
-    "global",
-    "user",
-    "profile",
-    "history",
-    "insert"
-  ],
   "properties": {
     "record": {
       "type": "number",
@@ -87,5 +79,8 @@
     "next",
     "dateline"
   ],
-  "description": "An array's object for name change history, replys with a result from Mojang's public API or Kelpstone's cached copy."
+  "description": "An array's object for name change history, replys with a result from Mojang's public API or Kelpstone's cached copy.",
+  "x-tags": [
+    "global/mojang"
+  ]
 }
