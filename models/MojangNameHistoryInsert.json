@@ -1,6 +1,40 @@
 {
   "title": "MojangNameHistoryInsert",
   "type": "object",
+  "description": "An array's object for name change history, replys with a result from Mojang's public API or Kelpstone's cached copy.",
+  "x-tags": [
+    "global",
+    "mojang"
+  ],
+  "examples": [
+    {
+      "record": 28313,
+      "name": "johndoe",
+      "nameFancy": "JohnDoe",
+      "previous": {
+        "record": 9123,
+        "name": "johndoe_iscool",
+        "nameFancy": "JohnDoe_IsCoOL",
+        "dateline": {
+          "start": "2019-08-24T14:15:22Z",
+          "end": "2019-08-24T14:15:22Z"
+        }
+      },
+      "next": {
+        "record": 12910,
+        "name": "jd2018",
+        "nameFancy": "Jd2018",
+        "dateline": {
+          "start": "2019-08-24T14:15:22Z",
+          "end": "2019-08-24T14:15:22Z"
+        }
+      },
+      "dateline": {
+        "start": "2019-08-24T14:15:22Z",
+        "end": "2019-08-24T14:15:22Z"
+      }
+    }
+  ],
   "properties": {
     "record": {
       "type": "number",
@@ -20,33 +54,14 @@
       "example": "JohnDoe"
     },
     "previous": {
-      "oneOf": [
-        {
-          "type": "string",
-          "properties": {},
-          "behavior": "Read Only",
-          "description": "The previous result from the player's renaming array."
-        },
-        {
-          "$ref": "./MojangNameHistoryInsert.json"
-        }
-      ]
+      "$ref": "./MojangNameHistoryInsert.json"
     },
     "next": {
-      "oneOf": [
-        {
-          "type": "string",
-          "properties": {},
-          "behavior": "Read Only"
-        },
-        {
-          "$ref": "./MojangNameHistoryInsert.json"
-        }
-      ],
-      "description": "The next result from the player's renaming array."
+      "$ref": "./MojangNameHistoryInsert.json"
     },
     "dateline": {
       "type": "object",
+      "description": "Where the entry resides in the history of a player's Mojang identity history.",
       "required": [
         "start",
         "end"
@@ -58,6 +73,7 @@
             "null"
           ],
           "format": "date-time",
+          "description": "Either a timestamp or null if it was the original name created with the account.\n\nMojang does not provide a date for account creation because of their security questions using it as a form of validation.",
           "readOnly": true
         },
         "end": {
@@ -75,12 +91,6 @@
   "required": [
     "name",
     "nameFancy",
-    "previous",
-    "next",
     "dateline"
-  ],
-  "description": "An array's object for name change history, replys with a result from Mojang's public API or Kelpstone's cached copy.",
-  "x-tags": [
-    "global/mojang"
   ]
 }

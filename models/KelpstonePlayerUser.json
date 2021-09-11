@@ -1,33 +1,46 @@
 {
   "title": "KelpstonePlayerUser",
   "type": "object",
+  "x-tags": [
+    "kelpstone"
+  ],
   "properties": {
     "id": {
       "$ref": "./UniversalUserIdentifier.json"
     },
     "name": {
       "type": "object",
+      "required": [
+        "nickName",
+        "player",
+        "history"
+      ],
+      "description": "Customizable identity data containg the Kelpstone exclusive editions of the players name as well as the permenant Mojang-provided name.",
       "properties": {
         "nickName": {
           "type": "string"
         },
         "player": {
-          "type": "string"
+          "type": "string",
+          "readOnly": true
         },
         "history": {
           "type": "array",
           "items": {
             "$ref": ""
-          }
+          },
+          "readOnly": true
         }
       }
+    },
+    "birthday": {
+      "type": "object",
+      "description": "Data relating to when the user initaly joined the Kelpfamily of services."
     }
   },
   "required": [
     "id",
     "name"
   ],
-  "x-tags": [
-    "kelpstone"
-  ]
+  "description": "A set of data exclusive to user profiles for Kelpstone's server APIs."
 }
