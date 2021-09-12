@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Public Developer API",
-    "version": "1.0.0",
+    "version": "1.0",
     "summary": "The first public facing API for the entire Kelpstone/Kelpcorp francise, including but not limited to, statistics, account data, achievements, quests, forums, linked accounts and so much more.",
     "contact": {
       "name": "Nathanna (a.k.a. \"Piggy\" or \"Tonya)",
@@ -13,7 +13,7 @@
       "name": "GNU AGPLv3",
       "identifier": "AGPL-3.0-or-later"
     },
-    "description": "The first public facing API for the entire Kelpstone/Kelpcorp francise, including but not limited to, statistics, account data, achievements, quests, forums, linked accounts and so much more.\n\n__Maintained:__ Yes"
+    "description": "The first public facing API for the entire Kelpstone/Kelpcorp francise, including but not limited to, statistics, account data, achievements, quests, forums, linked accounts and so much more.\n\n| Property     | Boolean |\n| ------------ | ------  |\n| Maintained   | True    |\n| Supported    | True    |\n| Trial Stage  | Alpha   |\n\n<p align=\"center\">Latest Phasing Information: <a href=\"https://api.kelpstone.com/v1\">AS JSON</a></p>"
   },
   "servers": [
     {
@@ -31,11 +31,17 @@
   ],
   "components": {
     "securitySchemes": {
-      "Kelpauth® Developer Key": {
-        "name": "Token",
+      "Kelpauth® Application Token": {
+        "name": "Bearer",
         "type": "apiKey",
         "in": "header",
-        "description": ""
+        "description": "#### Definition\n\nYou can use either `Bearer` to mandatorily suply your developer app's private key token. Unlike user tokens, you may only supply one developer app key at a time... for now. 😉\n\n#### Distrobution\n\nIn order to get a developer app key, you'll need to visit [dap.kelpstone.com (Developer App Portal)](http://dap.kelpstone.com?show=my_apps&tutorial=true), sign into your account and create an application with limited permissions. Unless you want to wait for approval, use the playground permission settings to experiment on your own account.\n\n#### Quicklook"
+      },
+      "Kelpauth® User-Authorized Tokens": {
+        "name": "Authority",
+        "type": "apiKey",
+        "in": "header",
+        "description": "#### Definition\n\nYou can use either `Authorities` or `Authority` to optionally suply user authorized developer app scope tokens. You can include as many tokens as you need, seperated by a comma. It does not matter which header name you use, both allow for one or more items.\n\n#### Distrobution\n\nIn order to get your developer app authorized for control over user account details, you'll need to prompt them first. Authorization methods include, prompting them to run a command ingame or redirecting them to an KelpAuth splash screen which allows them to grant the permisions. Both of which will return a token to the iniating api call's host.\n\n#### Quicklook"
       }
     },
     "schemas": {
@@ -516,7 +522,7 @@
   "paths": {
     "/": {
       "get": {
-        "summary": "API Protocol Information",
+        "summary": "Protocol Information",
         "responses": {
           "200": {
             "description": "OK",
@@ -682,7 +688,7 @@
     },
     "/accounts": {
       "get": {
-        "summary": "Global Account List",
+        "summary": "List Global Accounts",
         "tags": [],
         "responses": {
           "200": {
@@ -720,6 +726,58 @@
         "description": "Returns a list of all record identification numbers for member list purpouses."
       },
       "parameters": []
+    },
+    "/accounts/{recordNumber}": {
+      "get": {
+        "summary": "Get Global Account",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "../models/UniversalUserIdentifier.json"
+                    },
+                    "error": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "result",
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-global-account"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "number",
+            "example": 83838
+          },
+          "name": "recordNumber",
+          "in": "path",
+          "required": true,
+          "description": "The identification number of the account your trying to get."
+        }
+      ],
+      "patch": {
+        "summary": "",
+        "operationId": "patch-global-account",
+        "security": [
+          {
+            "Kelpauth® Application Token": []
+          }
+        ]
+      }
     }
   }
 }

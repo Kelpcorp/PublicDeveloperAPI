@@ -2,6 +2,9 @@
   "title": "UniversalUserIdentifier",
   "type": "object",
   "description": "An identifier string & object for all Kelp-anything related profiles, used to aim back to a global stem account.",
+  "x-tags": [
+    "v1/global"
+  ],
   "properties": {
     "record": {
       "type": "number",
@@ -12,8 +15,8 @@
     },
     "userName": {
       "type": "string",
-      "description": "A changeable human readable identifier that is exclusive (while they have it) to a user, that can be used to search for them on diffrent Kelp sites, friend them, etc.\n\n*__Note:__ This defaults to their identifier on whatever platform they created the account from/with. It's only unique to them while they have it.*\n\n*__Examples:__\n\"maccaroon2910\" (\"Maccaroon#2910\") or \n\"johndoe\" (\"johndoe@gmail.com\")*",
-      "example": "PinkFlower1023"
+      "description": "A changeable human readable identifier that is exclusive (while they have it) to a user, that can be used to search for them on diffrent Kelp sites, friend them, etc.\n\n*__Note:__ This defaults to their identifier on whatever platform they created the account from/with. It's only unique to them while they have it.*",
+      "example": "maccaroon2910 (Discord: Maccaroon#2910)"
     },
     "security": {
       "type": "object",
@@ -60,7 +63,40 @@
     "userName",
     "security"
   ],
-  "x-tags": [
-    "v1/global"
+  "examples": [
+    {
+      "record": 18233,
+      "userName": "maccaroon2910",
+      "security": {
+        "hasAccess": false,
+        "secured": {
+          "accessHistory": null,
+          "personalPreferences": null,
+          "currentDevices": [
+            {
+              "record": 23188
+            }
+          ],
+          "2faOptions": [
+            {
+              "record": 29319,
+              "owner": {
+                "record": 18233
+              },
+              "hasAccess": false,
+              "secured": {
+                "lastUsedCode": "93-A9-A2",
+                "lastTimeGenerated": "2029-02-06 05:55:07",
+                "codeHasBeenUsedYet": false,
+                "completed": false
+              },
+              "internal_metadata": {
+                "external_2fa_query_method": 3
+              }
+            }
+          ]
+        }
+      }
+    }
   ]
 }
