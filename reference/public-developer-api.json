@@ -47,6 +47,470 @@
         "in": "cookie",
         "description": ""
       }
+    },
+    "schemas": {
+      "2faDestination": {
+        "description": "A two fractor authorization routing destination array object, used internally and semi-externally by the Kelpauth software family. ",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "examples": {
+            "type": "array",
+            "items": {
+              "required": [],
+              "properties": {}
+            }
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "record": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "example": {
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "readOnly": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "type",
+                  "example",
+                  "description",
+                  "readOnly"
+                ]
+              },
+              "owner": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "allOf": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "minItems": 1,
+                    "items": {
+                      "required": [
+                        "type",
+                        "description",
+                        "behavior"
+                      ],
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "description": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "behavior": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "description",
+                  "allOf"
+                ]
+              },
+              "hasAccess": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "default": {
+                    "type": "boolean"
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "readOnly": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "type",
+                  "default",
+                  "description",
+                  "readOnly"
+                ]
+              },
+              "secured": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "properties": {
+                    "type": "object",
+                    "properties": {
+                      "lastUsedCode": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "array",
+                            "items": {
+                              "required": [],
+                              "properties": {}
+                            }
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "example": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "readOnly": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "description",
+                          "example",
+                          "readOnly"
+                        ]
+                      },
+                      "lastTimeGenerated": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "array",
+                            "items": {
+                              "required": [],
+                              "properties": {}
+                            }
+                          },
+                          "format": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "example": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "readOnly": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "format",
+                          "description",
+                          "example",
+                          "readOnly"
+                        ]
+                      },
+                      "codeHasBeenUsedYet": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "default": {
+                            "type": "boolean"
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "readOnly": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "default",
+                          "description",
+                          "readOnly"
+                        ]
+                      },
+                      "completed": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "deprecated": {
+                            "type": "boolean"
+                          },
+                          "default": {
+                            "type": "boolean"
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "readOnly": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "deprecated",
+                          "default",
+                          "description",
+                          "readOnly"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "lastUsedCode",
+                      "lastTimeGenerated",
+                      "codeHasBeenUsedYet",
+                      "completed"
+                    ]
+                  },
+                  "readOnly": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "type",
+                  "description",
+                  "properties",
+                  "readOnly"
+                ]
+              },
+              "internal_metadata": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "required": {
+                    "type": "array",
+                    "items": {
+                      "required": [],
+                      "properties": {}
+                    }
+                  },
+                  "properties": {
+                    "type": "object",
+                    "properties": {
+                      "external_2fa_query_method": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "example": {
+                            "type": "number"
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "readOnly": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "example",
+                          "description",
+                          "readOnly"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "external_2fa_query_method"
+                    ]
+                  },
+                  "readOnly": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "type",
+                  "description",
+                  "required",
+                  "properties",
+                  "readOnly"
+                ]
+              }
+            },
+            "required": [
+              "record",
+              "owner",
+              "hasAccess",
+              "secured",
+              "internal_metadata"
+            ]
+          },
+          "required": {
+            "type": "array",
+            "items": {
+              "required": [],
+              "properties": {}
+            }
+          },
+          "x-tags": {
+            "type": "array",
+            "items": {
+              "required": [],
+              "properties": {}
+            }
+          }
+        },
+        "required": [
+          "title",
+          "type",
+          "description",
+          "examples",
+          "properties",
+          "required",
+          "x-tags"
+        ],
+        "x-examples": {
+          "example-1": {
+            "title": "2faDestinationInsert",
+            "type": "object",
+            "description": "A two fractor authorization routing destination array object, used internally and semi-externally by the Kelpauth software family. ",
+            "examples": [],
+            "properties": {
+              "record": {
+                "type": "integer",
+                "example": 29319,
+                "description": "A schema-unique identifier for internal databases as well as `POST` object referencing methods.",
+                "readOnly": true
+              },
+              "owner": {
+                "description": "If your using `GET` this will contain a UUI schema, optionally when using `POST` you can reference the record number of the UUI to simply things.\n\n*__Note__: Changing data inside the `POST`'s `UniversalUserIdentifier` other than the `id` will not having any affects on the record.*",
+                "allOf": [
+                  {
+                    "type": "string",
+                    "description": "You can either use the record id from a UniversalUserIdentifier query if using POST, or use the data inside this object with the UniversalUserIdentifier schema when using GET.",
+                    "behavior": "Read Only"
+                  },
+                  {
+                    "$ref": "./UniversalUserIdentifier.json"
+                  }
+                ]
+              },
+              "hasAccess": {
+                "type": "boolean",
+                "default": false,
+                "description": "Tells you if the secured object will be present or not.",
+                "readOnly": true
+              },
+              "secured": {
+                "type": "object",
+                "description": "This data can only be accessed if the target user has authorized your developer app and your using the generated token.",
+                "properties": {
+                  "lastUsedCode": {
+                    "type": [
+                      "string",
+                      "integer"
+                    ],
+                    "description": "The generated data that the user needs to enter from their method's authorization app.",
+                    "example": "93-A9-A2",
+                    "readOnly": true
+                  },
+                  "lastTimeGenerated": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date-time",
+                    "description": "When the code was generated; mainly used for cooldowns on the front end.",
+                    "example": "2029-02-06 05:55:07",
+                    "readOnly": true
+                  },
+                  "codeHasBeenUsedYet": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Has the user entered the code on their side? This lets other login instances know that the code is no longer fresh from the cyber-oven.",
+                    "readOnly": true
+                  },
+                  "completed": {
+                    "type": "boolean",
+                    "deprecated": true,
+                    "default": false,
+                    "description": "Prequel to \"codeHasBeenUsedYet\"; too generic.",
+                    "readOnly": true
+                  }
+                },
+                "readOnly": true
+              },
+              "internal_metadata": {
+                "type": "object",
+                "description": "You can ignore this, unless for some odd reason you'd like to use this data for your own personal caching purpouses. 😏",
+                "required": [
+                  "external_2fa_query_method"
+                ],
+                "properties": {
+                  "external_2fa_query_method": {
+                    "type": "integer",
+                    "example": 3,
+                    "description": "Tells the internal website system which API to query to generate or confirm the authentication code.",
+                    "readOnly": true
+                  }
+                },
+                "readOnly": true
+              }
+            },
+            "required": [
+              "record",
+              "owner",
+              "hasAccess",
+              "internal_metadata"
+            ],
+            "x-tags": [
+              "v1/global/2fa"
+            ]
+          }
+        },
+        "title": "2faDestination"
+      }
     }
   },
   "security": [
