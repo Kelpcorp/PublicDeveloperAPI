@@ -26,7 +26,7 @@
     },
     {
       "url": "https://maintenance.kelpstone.com/api/v1",
-      "description": "Maintenance Limited API"
+      "description": "Maintenance Backup Cache (Previously Executed Requests Only)"
     }
   ],
   "components": {
@@ -518,10 +518,10 @@
       "Kelpauth® Developer Key - In Any Mode": []
     },
     {
-      "Kelpauth® Developer Key (Header)": []
+      "Kelpauth Key - In Header Mode": []
     },
     {
-      "Kelpauth® Developer Key (Cookie)": []
+      "Kelpauth Key - In Cookie Mode": []
     }
   ],
   "tags": [
