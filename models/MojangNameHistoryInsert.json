@@ -2,10 +2,6 @@
   "title": "MojangNameHistoryInsert",
   "type": "object",
   "description": "An array's object for name change history, replys with a result from Mojang's public API or Kelpstone's cached copy.",
-  "x-tags": [
-    "global",
-    "mojang"
-  ],
   "examples": [
     {
       "record": 28313,
@@ -39,7 +35,7 @@
     "record": {
       "type": "number",
       "example": 2831,
-      "description": "An internally-set record indentifier, exclusive to the record of name change stored in Kelpstone's cache of Mojang's API results for the player.",
+      "description": "A schema-unique identifier for internal databases as well as `POST` object referencing methods.",
       "readOnly": true
     },
     "name": {
@@ -89,8 +85,12 @@
     }
   },
   "required": [
+    "record",
     "name",
     "nameFancy",
     "dateline"
+  ],
+  "x-tags": [
+    "v1/global/mojang"
   ]
 }

@@ -1,21 +1,36 @@
 {
   "title": "KelpstonePlayerUser",
   "type": "object",
-  "x-tags": [
-    "kelpstone"
-  ],
+  "description": "A set of data exclusive to user profiles for Kelpstone's server APIs.",
   "properties": {
-    "id": {
-      "$ref": "./UniversalUserIdentifier.json"
+    "record": {
+      "type": "integer",
+      "description": "A schema-unique identifier for internal databases as well as `POST` object referencing methods.",
+      "example": 283811,
+      "readOnly": true
+    },
+    "stem": {
+      "allOf": [
+        {
+          "type": "string",
+          "properties": {},
+          "description": "(POST Only) A record identifier for UniversalUserIdentifier.",
+          "behavior": "Read/Write"
+        },
+        {
+          "$ref": "./UniversalUserIdentifier.json"
+        }
+      ],
+      "description": "If your using `GET` this will contain a UUI schema, optionally when using `POST` you can reference the record number of the UUI to simply things.\n\n*__Note:__ Changing data inside the `POST`'s `UniversalUserIdentifier` other than the `id` will not having any affects on the record.*"
     },
     "name": {
       "type": "object",
+      "description": "Customizable identity data containg the Kelpstone exclusive editions of the players name as well as the permenant Mojang-provided name.",
       "required": [
         "nickName",
         "player",
         "history"
       ],
-      "description": "Customizable identity data containg the Kelpstone exclusive editions of the players name as well as the permenant Mojang-provided name.",
       "properties": {
         "nickName": {
           "type": "string"
@@ -39,8 +54,11 @@
     }
   },
   "required": [
-    "id",
+    "record",
+    "stem",
     "name"
   ],
-  "description": "A set of data exclusive to user profiles for Kelpstone's server APIs."
+  "x-tags": [
+    "v1/kelpstone"
+  ]
 }

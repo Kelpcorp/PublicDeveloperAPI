@@ -1,24 +1,37 @@
 {
   "title": "2faDestinationInsert",
   "type": "object",
-  "description": "A two fractor authorization routing destination array object, used internally and semi-externally by the Kelpauth program; developers can also add or remove these object using an user-authorized-developer-app with proper credentials at the time.",
+  "description": "A two fractor authorization routing destination array object, used internally and semi-externally by the Kelpauth software family. ",
+  "examples": [],
   "properties": {
     "record": {
       "type": "integer",
-      "minimum": 1,
       "example": 29319,
+      "description": "A schema-unique identifier for internal databases as well as `POST` object referencing methods.",
       "readOnly": true
     },
     "owner": {
-      "type": "string"
+      "description": "If your using `GET` this will contain a UUI schema, optionally when using `POST` you can reference the record number of the UUI to simply things.\n\n*__Note__: Changing data inside the `POST`'s `UniversalUserIdentifier` other than the `id` will not having any affects on the record.*",
+      "allOf": [
+        {
+          "type": "string",
+          "description": "You can either use the record id from a UniversalUserIdentifier query if using POST, or use the data inside this object with the UniversalUserIdentifier schema when using GET.",
+          "behavior": "Read Only"
+        },
+        {
+          "$ref": "./UniversalUserIdentifier.json"
+        }
+      ]
     },
     "hasAccess": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Tells you if the secured object will be present or not.",
+      "readOnly": true
     },
     "secured": {
       "type": "object",
-      "description": "This blob of data can only be accessed if the target user has authorized your developer app and your using the generated token(s) derived from that exchange, in addition to your developer apps api key.",
+      "description": "This data can only be accessed if the target user has authorized your developer app and your using the generated token.",
       "properties": {
         "lastUsedCode": {
           "type": [
@@ -26,29 +39,34 @@
             "integer"
           ],
           "description": "The generated data that the user needs to enter from their method's authorization app.",
+          "example": "93-A9-A2",
           "readOnly": true
         },
         "lastTimeGenerated": {
           "type": [
             "string",
-            "boolean"
+            "null"
           ],
           "format": "date-time",
           "description": "When the code was generated; mainly used for cooldowns on the front end.",
+          "example": "2029-02-06 05:55:07",
           "readOnly": true
         },
         "codeHasBeenUsedYet": {
           "type": "boolean",
           "default": false,
-          "description": "Has the user entered the code on their side? This lets other login instances know that the code is no longer fresh from the cyber-oven."
+          "description": "Has the user entered the code on their side? This lets other login instances know that the code is no longer fresh from the cyber-oven.",
+          "readOnly": true
         },
         "completed": {
           "type": "boolean",
           "deprecated": true,
           "default": false,
-          "description": "Prequel to \"codeHasBeenUsedYet\"; too generic."
+          "description": "Prequel to \"codeHasBeenUsedYet\"; too generic.",
+          "readOnly": true
         }
-      }
+      },
+      "readOnly": true
     },
     "internal_metadata": {
       "type": "object",
@@ -58,9 +76,13 @@
       ],
       "properties": {
         "external_2fa_query_method": {
-          "type": "integer"
+          "type": "integer",
+          "example": 3,
+          "description": "Tells the internal website system which API to query to generate or confirm the authentication code.",
+          "readOnly": true
         }
-      }
+      },
+      "readOnly": true
     }
   },
   "required": [
@@ -70,6 +92,6 @@
     "internal_metadata"
   ],
   "x-tags": [
-    "2fa"
+    "v1/global/2fa"
   ]
 }

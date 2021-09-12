@@ -3,17 +3,17 @@
   "type": "object",
   "description": "An identifier string & object for all Kelp-anything related profiles, used to aim back to a global stem account.",
   "properties": {
-    "id": {
+    "record": {
       "type": "number",
-      "example": 182339,
+      "example": 18233,
       "default": 0,
-      "minimum": 1,
-      "description": "An identifier for the row in the database as well as the primary key for other objects to relate them to the same human behind the computer.",
+      "description": "A schema-unique identifier for internal databases as well as `POST` object referencing methods.",
       "readOnly": true
     },
     "userName": {
       "type": "string",
-      "description": "A changeable human readable identifier that is exclusive (while they have it) to a user, that can be used to search for them on diffrent Kelp sites, friend them, etc.\n\nThis defaults to their identifier on Minecraft, Discord (\"maccaroon2910\" from \"Maccaroon#2910\", Spotify, email beginning (\"johndoe\" from \"johndoe@gmail.com\"), depending on what they use to sign up initally for the Kelpauth global platform."
+      "description": "A changeable human readable identifier that is exclusive (while they have it) to a user, that can be used to search for them on diffrent Kelp sites, friend them, etc.\n\n*__Note:__ This defaults to their identifier on whatever platform they created the account from/with. It's only unique to them while they have it.*\n\n*__Examples:__\n\"maccaroon2910\" (\"Maccaroon#2910\") or \n\"johndoe\" (\"johndoe@gmail.com\")*",
+      "example": "PinkFlower1023"
     },
     "security": {
       "type": "object",
@@ -22,14 +22,9 @@
       ],
       "properties": {
         "hasAccess": {
-          "type": "boolean"
-        },
-        "2faOptions": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "$ref": "./2faDestinationInsert.json"
-          }
+          "type": "boolean",
+          "default": false,
+          "readOnly": true
         },
         "secured": {
           "type": "object",
@@ -41,25 +36,31 @@
               "type": "string"
             },
             "currentDevices": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "$ref": "./CurrentlySavedDevice.json"
+              },
+              "readOnly": true
             },
             "2faOptions": {
               "type": "array",
               "items": {
                 "$ref": "./2faDestinationInsert.json"
-              }
+              },
+              "readOnly": true
             }
           }
         }
-      }
+      },
+      "readOnly": true
     }
   },
   "required": [
-    "id",
+    "record",
     "userName",
     "security"
   ],
   "x-tags": [
-    "global"
+    "v1/global"
   ]
 }
