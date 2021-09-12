@@ -31,20 +31,10 @@
   ],
   "components": {
     "securitySchemes": {
-      "Kelpauth Key - In Query Mode": {
-        "name": "key",
+      "Kelpauth® Developer Key": {
+        "name": "Token",
         "type": "apiKey",
-        "in": "query"
-      },
-      "Kelpauth Key - In Header Mode": {
-        "name": "Kelpauth-Key",
-        "type": "apiKey",
-        "in": "header"
-      },
-      "Kelpauth Key - In Cookie Mode": {
-        "name": "KA_KEY",
-        "type": "apiKey",
-        "in": "cookie",
+        "in": "header",
         "description": ""
       }
     },
@@ -516,12 +506,6 @@
   "security": [
     {
       "Kelpauth® Developer Key - In Any Mode": []
-    },
-    {
-      "Kelpauth Key - In Header Mode": []
-    },
-    {
-      "Kelpauth Key - In Cookie Mode": []
     }
   ],
   "tags": [
@@ -533,7 +517,6 @@
     "/": {
       "get": {
         "summary": "API Protocol Information",
-        "tags": [],
         "responses": {
           "200": {
             "description": "OK",
@@ -680,7 +663,7 @@
             }
           }
         },
-        "operationId": "get-v1-home",
+        "operationId": "get-protocol-info",
         "description": "Returns information relative to support activity and maintenance status of the V1 API architecture.",
         "security": [],
         "parameters": [
@@ -694,6 +677,47 @@
             "description": "What date to parse as the current date for the returning data."
           }
         ]
+      },
+      "parameters": []
+    },
+    "/accounts": {
+      "get": {
+        "summary": "Global Account List",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "description": "Returns a list of all record identification numbers for member list purpouses.",
+                  "items": {
+                    "type": "number",
+                    "example": 2838193,
+                    "readOnly": true
+                  },
+                  "readOnly": true
+                },
+                "examples": {
+                  "Example": {
+                    "value": [
+                      2838193,
+                      3929319,
+                      32891,
+                      1,
+                      119921,
+                      291
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-users",
+        "description": "Returns a list of all record identification numbers for member list purpouses."
       },
       "parameters": []
     }
