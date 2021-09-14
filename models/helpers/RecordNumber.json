@@ -1,8 +1,5 @@
 {
-  "type": [
-    "integer",
-    "string"
-  ],
+  "type": "integer",
   "title": "Record Number",
   "description": "A schema-unique identifier for internal databases and body object referencing methods.",
   "example": 23811,
