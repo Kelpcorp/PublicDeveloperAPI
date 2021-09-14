@@ -31,11 +31,14 @@
       }
     }
   ],
+  "x-tags": [
+    "v1/global/mojang"
+  ],
   "properties": {
     "record": {
       "type": "number",
       "example": 2831,
-      "description": "A schema-unique identifier for internal databases as well as `POST` object referencing methods.",
+      "description": "A schema-unique identifier for internal databases and body object referencing methods.",
       "readOnly": true
     },
     "name": {
@@ -89,8 +92,5 @@
     "name",
     "nameFancy",
     "dateline"
-  ],
-  "x-tags": [
-    "v1/global/mojang"
   ]
 }

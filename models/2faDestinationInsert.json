@@ -1,5 +1,5 @@
 {
-  "title": "2faDestinationInsert",
+  "title": "2faDestination",
   "type": "object",
   "description": "A two fractor authorization routing destination array object, used internally and semi-externally by the Kelpauth software family. ",
   "examples": [],
@@ -10,7 +10,7 @@
     "record": {
       "type": "integer",
       "example": 29319,
-      "description": "A schema-unique identifier for internal databases as well as `POST` object referencing methods.",
+      "description": "A schema-unique identifier for internal databases and body object referencing methods.",
       "readOnly": true
     },
     "owner": {

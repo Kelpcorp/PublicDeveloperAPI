@@ -35,7 +35,7 @@
         "name": "Authority",
         "type": "apiKey",
         "in": "header",
-        "description": "### Only With The Signature\n**QUERY ONLY** - The signature paramater allows input of a string containing alphabetically formatted properties from the request, encrypted using your developer application's private key. The server generates a hash from the properties on the backend and verifies the signature before continuing with the exchange.\n#### Definition\nYou will need to use `?signature=` to supply your developer app's md5-encoded signature blob, and `?client=` to supply the public key. To read how to generate and format one go to the page [Security Signatures 101]() and follow the steps for your language.\n\n*Unlike user tokens, you may only supply one developer app token in a signature... for now. 😉*\n\n#### Distrobution\nIn order to get a developer app and the public and private key, you'll need to visit [dap.kelpstone.com (Developer App Portal)](http://dap.kelpstone.com?show=my_apps&tutorial=true), sign into your account and create an application with limited permissions. Unless you want to wait for approval, use the playground permission settings to experiment on your own account.\n\n#### Protocol\nTwo conjoining query additions that you provide when making API calls. Specify the developer app's public key in a query parameter called Client and the hash in a query parameter called Signature.\n\nExample: `?client=123&signature=202cb962ac59075b964b07152d234b70`\n\n### Adding User-Authorized Scopes\n**HEADER ONLY** - ​User-authorized scopes allow developer applications to edit and acess secret or protected information from or to a users profile or settings.\n\n#### Definition\nYou can use either `Authorities` or `Authority` to optionally suply user authorized developer app scope tokens. You can include as many tokens as you need, seperated by a comma. It does not matter which header name you use, both allow for one or more items.\n\n#### Distrobution\nIn order to get your developer app authorized for control over user account details, you'll need to prompt them first. Authorization methods include, prompting them to run a command ingame or redirecting them to an KelpAuth splash screen which allows them to grant the permisions. Both of which will return a token to the iniating api call's host.\n\n#### UProtoco"
+        "description": "### Only With The Signature\n**QUERY ONLY** - The signature paramater allows input of a string containing alphabetically formatted properties from the request, encrypted using your developer application's private key. The server generates a hash from the properties on the backend and verifies the signature before continuing with the exchange.\n#### Definition\nYou will need to use `?signature=` to supply your developer app's md5-encoded signature blob, and `?client=` to supply the public key. To read how to generate and format one go to the page [Security Signatures 101]() and follow the steps for your language.\n\n*Unlike user tokens, you may only supply one developer app token in a signature... for now. 😉*\n\n#### Distrobution\nIn order to get a developer app and the public and private key, you'll need to visit [dap.kelpstone.com (Developer App Portal)](http://dap.kelpstone.com?show=my_apps&tutorial=true), sign into your account and create an application with limited permissions. Unless you want to wait for approval, use the playground permission settings to experiment on your own account.\n\n#### Protocol\nTwo conjoining query additions that you provide when making API calls. Specify the developer app's public key in a query parameter called Client and the hash in a query parameter called Signature.\n\nExample: `?client=123&signature=202cb962ac59075b964b07152d234b70`\n\n### Adding User-Authorized Scopes\n**HEADER ONLY** - ​User-authorized scoped tokens which allow developer applications to edit and acess secret or protected information from or to a users profile, settings and content.\n\n#### Definition\nYou can use either `Authorities` or `Authority` to optionally suply user authorized developer app scope tokens. You can include as many tokens as you need, seperated by a comma. It does not matter which header name you use, both allow for one or more items.\n\n#### Distrobution\nIn order to get your developer app authorized for control over user account details, you'll need to prompt them first. Authorization methods include, prompting them to run a command ingame or redirecting them to an KelpAuth splash screen which allows them to grant the permisions. Both of which will return a token to the iniating api call's host.\n\n#### UProtoco"
       }
     },
     "schemas": {
@@ -422,7 +422,7 @@
                     "behavior": "Read Only"
                   },
                   {
-                    "$ref": "./UniversalUserIdentifier.json"
+                    "$ref": "UniversalUserIdentifier.json"
                   }
                 ]
               },
@@ -514,7 +514,7 @@
           "minLength": 32,
           "maxLength": 36
         },
-        "description": "Your developer applications public client identifier, normally formatted with UUID.\n\n**__Note:__ You do not need to include the dash seperaters in the UUID."
+        "description": "Your developer applications public client identifier, normally formatted with UUID.**__Note:__ You do not need to include the dash separators in the UUID.**"
       },
       "Signature": {
         "name": "signature",
@@ -529,6 +529,25 @@
           "pattern": "^[A-Za-z0-9]+"
         },
         "description": "A blob of yml formatted following the guide md5 hashed with your application's private key."
+      },
+      "Record": {
+        "name": "record",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "example": 18318
+        },
+        "description": "A schema-unique identifier for internal databases and body object referencing methods."
+      },
+      "Authority": {
+        "name": "Authority",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "​User-authorized scoped tokens which allow developer applications to edit and acess secret or protected information from or to a users profile, settings and content."
       }
     }
   },
@@ -588,7 +607,7 @@
                                 "example": "1.0.3",
                                 "format": "version",
                                 "pattern": "^[0-9._-]+",
-                                "minLength": 6,
+                                "minLength": 5,
                                 "default": "1.0.3",
                                 "readOnly": true
                               },
@@ -693,7 +712,7 @@
           }
         },
         "operationId": "get-protocol-info",
-        "description": "Returns information relative to support activity and maintenance status of the V1 API architecture.",
+        "description": "Returns information relative to meta details, support expectancy and maintenance status of the v1 architecture.",
         "security": [],
         "parameters": [
           {
@@ -748,11 +767,19 @@
           }
         },
         "operationId": "get-users",
-        "description": "Returns a list of all record identification numbers for member list purpouses."
+        "description": "Returns a list of all record identification numbers for member list purpouses.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Client"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          }
+        ]
       },
       "parameters": []
     },
-    "/accounts/{recordNumber}": {
+    "/accounts/{record}": {
       "get": {
         "summary": "Get Global Account",
         "tags": [],
@@ -781,24 +808,31 @@
           }
         },
         "operationId": "get-global-account",
-        "parameters": []
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Client"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          }
+        ]
       },
       "parameters": [
         {
-          "schema": {
-            "type": "number",
-            "example": 83838
-          },
-          "name": "recordNumber",
-          "in": "path",
-          "required": true,
-          "description": "The identification number of the account your trying to get."
+          "$ref": "#/components/parameters/Record"
         }
       ],
       "patch": {
-        "summary": "",
+        "summary": "Edit Global Account",
         "operationId": "patch-global-account",
-        "security": []
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Client"
+          },
+          {
+            "$ref": "#/components/parameters/Signature"
+          }
+        ]
       }
     }
   }

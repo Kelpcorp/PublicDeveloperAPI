@@ -5,12 +5,48 @@
   "x-tags": [
     "v1/global"
   ],
+  "examples": [
+    {
+      "record": 18233,
+      "userName": "maccaroon2910",
+      "security": {
+        "hasAccess": false,
+        "secured": {
+          "accessHistory": null,
+          "personalPreferences": null,
+          "currentDevices": [
+            {
+              "record": 23188
+            }
+          ],
+          "2faOptions": [
+            {
+              "record": 29319,
+              "owner": {
+                "record": 18233
+              },
+              "hasAccess": false,
+              "secured": {
+                "lastUsedCode": "93-A9-A2",
+                "lastTimeGenerated": "2029-02-06 05:55:07",
+                "codeHasBeenUsedYet": false,
+                "completed": false
+              },
+              "internal_metadata": {
+                "external_2fa_query_method": 3
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "properties": {
     "record": {
       "type": "number",
       "example": 18233,
       "default": 0,
-      "description": "A schema-unique identifier for internal databases as well as `POST` object referencing methods.",
+      "description": "A schema-unique identifier for internal databases and body object referencing methods.",
       "readOnly": true
     },
     "userName": {
@@ -62,41 +98,5 @@
     "record",
     "userName",
     "security"
-  ],
-  "examples": [
-    {
-      "record": 18233,
-      "userName": "maccaroon2910",
-      "security": {
-        "hasAccess": false,
-        "secured": {
-          "accessHistory": null,
-          "personalPreferences": null,
-          "currentDevices": [
-            {
-              "record": 23188
-            }
-          ],
-          "2faOptions": [
-            {
-              "record": 29319,
-              "owner": {
-                "record": 18233
-              },
-              "hasAccess": false,
-              "secured": {
-                "lastUsedCode": "93-A9-A2",
-                "lastTimeGenerated": "2029-02-06 05:55:07",
-                "codeHasBeenUsedYet": false,
-                "completed": false
-              },
-              "internal_metadata": {
-                "external_2fa_query_method": 3
-              }
-            }
-          ]
-        }
-      }
-    }
   ]
 }
