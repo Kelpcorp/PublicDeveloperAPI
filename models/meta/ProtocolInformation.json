@@ -100,29 +100,5 @@
     "support",
     "latest"
   ],
-  "examples": [
-    {
-      "record": 23811,
-      "meta": {
-        "identifier": "v1.0",
-        "name": "Vesion 1.0",
-        "subversions": [
-          "1.0.1",
-          "1.0.2",
-          "1.0.3"
-        ],
-        "urls": [
-          "https://api.kelpstone.com/v1",
-          "https://maintenance.kelpstone.com/lda/v1"
-        ]
-      },
-      "support": {
-        "cycleStart": "2019-08-24T14:15:22Z",
-        "notRecommended": "2019-08-24T14:15:22Z",
-        "onlyCriticalBugs": "2019-08-24T14:15:22Z",
-        "cycleEnd": "2019-08-24T14:15:22Z"
-      },
-      "latest": true
-    }
-  ]
+  "examples": []
 }

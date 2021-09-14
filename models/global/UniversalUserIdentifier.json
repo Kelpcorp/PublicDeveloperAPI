@@ -1,13 +1,11 @@
 {
   "title": "Universal User Identifier",
-  "type": "object",
-  "description": "An identifier string & object for all Kelp-anything related profiles, used to aim back to a global stem account.",
-  "examples": [
-    {
-      "record": 18233,
-      "userName": "maccaroon2910"
-    }
+  "type": [
+    "object",
+    "integer"
   ],
+  "description": "An identifier string & object for all Kelp-anything related profiles, used to aim back to a global stem account.",
+  "examples": [],
   "properties": {
     "record": {
       "$ref": "../helpers/RecordNumber.json"

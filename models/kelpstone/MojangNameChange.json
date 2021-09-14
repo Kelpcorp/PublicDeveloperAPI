@@ -1,6 +1,9 @@
 {
   "title": "Mojang Name Change",
-  "type": "object",
+  "type": [
+    "object",
+    "integer"
+  ],
   "description": "An array's object for name change history, replys with a result from Mojang's public API or Kelpstone's cached copy.",
   "examples": [],
   "properties": {
