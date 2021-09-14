@@ -31,17 +31,11 @@
   ],
   "components": {
     "securitySchemes": {
-      "Kelpauth® Application Token": {
-        "name": "Bearer",
-        "type": "apiKey",
-        "in": "header",
-        "description": "#### Definition\n\nYou can use either `Bearer` to mandatorily suply your developer app's private key token. Unlike user tokens, you may only supply one developer app key at a time... for now. 😉\n\n#### Distrobution\n\nIn order to get a developer app key, you'll need to visit [dap.kelpstone.com (Developer App Portal)](http://dap.kelpstone.com?show=my_apps&tutorial=true), sign into your account and create an application with limited permissions. Unless you want to wait for approval, use the playground permission settings to experiment on your own account.\n\n#### Quicklook"
-      },
-      "Kelpauth® User-Authorized Tokens": {
+      "Kelpauth® App Tokens": {
         "name": "Authority",
         "type": "apiKey",
         "in": "header",
-        "description": "#### Definition\n\nYou can use either `Authorities` or `Authority` to optionally suply user authorized developer app scope tokens. You can include as many tokens as you need, seperated by a comma. It does not matter which header name you use, both allow for one or more items.\n\n#### Distrobution\n\nIn order to get your developer app authorized for control over user account details, you'll need to prompt them first. Authorization methods include, prompting them to run a command ingame or redirecting them to an KelpAuth splash screen which allows them to grant the permisions. Both of which will return a token to the iniating api call's host.\n\n#### Quicklook"
+        "description": "### Only With The Signature\n**QUERY ONLY** - The signature paramater allows input of a string containing alphabetically formatted properties from the request, encrypted using your developer application's private key. The server generates a hash from the properties on the backend and verifies the signature before continuing with the exchange.\n#### Definition\nYou will need to use `?signature=` to supply your developer app's md5-encoded signature blob, and `?client=` to supply the public key. To read how to generate and format one go to the page [Security Signatures 101]() and follow the steps for your language.\n\n*Unlike user tokens, you may only supply one developer app token in a signature... for now. 😉*\n\n#### Distrobution\nIn order to get a developer app and the public and private key, you'll need to visit [dap.kelpstone.com (Developer App Portal)](http://dap.kelpstone.com?show=my_apps&tutorial=true), sign into your account and create an application with limited permissions. Unless you want to wait for approval, use the playground permission settings to experiment on your own account.\n\n#### Protocol\nTwo conjoining query additions that you provide when making API calls. Specify the developer app's public key in a query parameter called Client and the hash in a query parameter called Signature.\n\nExample: `?client=123&signature=202cb962ac59075b964b07152d234b70`\n\n### Adding User-Authorized Scopes\n**HEADER ONLY** - ​User-authorized scopes allow developer applications to edit and acess secret or protected information from or to a users profile or settings.\n\n#### Definition\nYou can use either `Authorities` or `Authority` to optionally suply user authorized developer app scope tokens. You can include as many tokens as you need, seperated by a comma. It does not matter which header name you use, both allow for one or more items.\n\n#### Distrobution\nIn order to get your developer app authorized for control over user account details, you'll need to prompt them first. Authorization methods include, prompting them to run a command ingame or redirecting them to an KelpAuth splash screen which allows them to grant the permisions. Both of which will return a token to the iniating api call's host.\n\n#### UProtoco"
       }
     },
     "schemas": {
@@ -755,7 +749,8 @@
             }
           }
         },
-        "operationId": "get-global-account"
+        "operationId": "get-global-account",
+        "parameters": []
       },
       "parameters": [
         {
@@ -772,11 +767,7 @@
       "patch": {
         "summary": "",
         "operationId": "patch-global-account",
-        "security": [
-          {
-            "Kelpauth® Application Token": []
-          }
-        ]
+        "security": []
       }
     }
   }

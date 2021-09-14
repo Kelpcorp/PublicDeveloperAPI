@@ -3,6 +3,9 @@
   "type": "object",
   "description": "A two fractor authorization routing destination array object, used internally and semi-externally by the Kelpauth software family. ",
   "examples": [],
+  "x-tags": [
+    "v1/global/2fa"
+  ],
   "properties": {
     "record": {
       "type": "integer",
@@ -72,7 +75,8 @@
       "type": "object",
       "description": "You can ignore this, unless for some odd reason you'd like to use this data for your own personal caching purpouses. 😏",
       "required": [
-        "external_2fa_query_method"
+        "external_2fa_query_method",
+        "external_2fa_query_method - copy"
       ],
       "properties": {
         "external_2fa_query_method": {
@@ -80,9 +84,23 @@
           "example": 3,
           "description": "Tells the internal website system which API to query to generate or confirm the authentication code.",
           "readOnly": true
+        },
+        "external_2fa_query_method - copy": {
+          "type": "integer",
+          "example": 3,
+          "description": "Tells the internal website system which API to query to generate or confirm the authentication code.",
+          "readOnly": true
         }
       },
       "readOnly": true
+    },
+    "example": {
+      "type": "object",
+      "properties": {
+        "": {
+          "type": "string"
+        }
+      }
     }
   },
   "required": [
@@ -90,8 +108,5 @@
     "owner",
     "hasAccess",
     "internal_metadata"
-  ],
-  "x-tags": [
-    "v1/global/2fa"
   ]
 }
