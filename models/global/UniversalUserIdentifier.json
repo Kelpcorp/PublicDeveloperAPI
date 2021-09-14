@@ -5,37 +5,7 @@
   "examples": [
     {
       "record": 18233,
-      "userName": "maccaroon2910",
-      "security": {
-        "hasAccess": false,
-        "secured": {
-          "accessHistory": null,
-          "personalPreferences": null,
-          "currentDevices": [
-            {
-              "record": 23188
-            }
-          ],
-          "2faOptions": [
-            {
-              "record": 29319,
-              "owner": {
-                "record": 18233
-              },
-              "hasAccess": false,
-              "secured": {
-                "lastUsedCode": "93-A9-A2",
-                "lastTimeGenerated": "2029-02-06 05:55:07",
-                "codeHasBeenUsedYet": false,
-                "completed": false
-              },
-              "internal_metadata": {
-                "external_2fa_query_method": 3
-              }
-            }
-          ]
-        }
-      }
+      "userName": "maccaroon2910"
     }
   ],
   "x-tags": [
@@ -45,54 +15,18 @@
     "record": {
       "$ref": "../helpers/RecordNumber.json"
     },
-    "userName": {
+    "name": {
       "type": "string",
       "description": "A changeable human readable identifier that is exclusive (while they have it) to a user, that can be used to search for them on diffrent Kelp sites, friend them, etc.\n\n*__Note:__ This defaults to their identifier on whatever platform they created the account from/with. It's only unique to them while they have it.*",
       "example": "maccaroon2910 (Discord: Maccaroon#2910)"
     },
     "security": {
-      "type": "object",
-      "required": [
-        "hasAccess"
-      ],
-      "properties": {
-        "hasAccess": {
-          "type": "boolean",
-          "default": false,
-          "readOnly": true
-        },
-        "secured": {
-          "type": "object",
-          "properties": {
-            "accessHistory": {
-              "type": "string"
-            },
-            "personalPreferences": {
-              "type": "string"
-            },
-            "currentDevices": {
-              "type": "array",
-              "items": {
-                "$ref": "./uui/2FA/SavedDevice.json"
-              },
-              "readOnly": true
-            },
-            "2faOptions": {
-              "type": "array",
-              "items": {
-                "$ref": "./uui/2FA/2FADestination.json"
-              },
-              "readOnly": true
-            }
-          }
-        }
-      },
-      "readOnly": true
+      "$ref": "./uui/SecurityInformation.json"
     }
   },
   "required": [
     "record",
-    "userName",
+    "name",
     "security"
   ]
 }

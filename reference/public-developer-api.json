@@ -116,10 +116,7 @@
                       "$ref": "../models/meta/ProtocolInformation.json"
                     },
                     "error": {
-                      "type": "boolean",
-                      "default": false,
-                      "description": "Responds with boolean depending on if the backend servers ran into an error with the parameters or permissions checks.",
-                      "readOnly": true
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
                     }
                   },
                   "required": [
@@ -199,7 +196,7 @@
                       }
                     },
                     "error": {
-                      "type": "boolean"
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
                     }
                   },
                   "readOnly": true
@@ -249,7 +246,7 @@
                       "$ref": "../models/global/UniversalUserIdentifier.json"
                     },
                     "error": {
-                      "type": "boolean"
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
                     }
                   },
                   "required": [
@@ -300,7 +297,22 @@
         "tags": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "../models/global/uui/SecurityInformation.json"
+                    },
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "get-global-account-security"

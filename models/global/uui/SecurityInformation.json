@@ -8,9 +8,40 @@
   "properties": {
     "record": {
       "$ref": "../../helpers/RecordNumber.json"
+    },
+    "hasAccess": {
+      "type": "boolean",
+      "default": false,
+      "readOnly": true
+    },
+    "secured": {
+      "type": "object",
+      "properties": {
+        "accessHistory": {
+          "type": "string"
+        },
+        "personalPreferences": {
+          "type": "string"
+        },
+        "currentDevices": {
+          "type": "array",
+          "items": {
+            "$ref": "./2FA/SavedDevice.json"
+          },
+          "readOnly": true
+        },
+        "2faOptions": {
+          "type": "array",
+          "items": {
+            "$ref": "./2FA/2FADestination.json"
+          },
+          "readOnly": true
+        }
+      }
     }
   },
   "required": [
-    "record"
+    "record",
+    "hasAccess"
   ]
 }
