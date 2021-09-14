@@ -1,6 +1,6 @@
 {
   "type": "boolean",
-  "title": "ServerErrorStatus",
+  "title": "Server Error Status",
   "x-tags": [
     "helpers"
   ],
