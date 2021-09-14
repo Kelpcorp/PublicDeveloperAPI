@@ -3,10 +3,6 @@
   "type": "object",
   "description": "A two fractor authorization routing destination array object, used internally and semi-externally by the Kelpauth software family. ",
   "examples": [],
-  "x-tags": [
-    "2fa",
-    "global"
-  ],
   "properties": {
     "record": {
       "$ref": "../../../helpers/RecordNumber.json"

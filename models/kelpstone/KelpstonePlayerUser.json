@@ -2,9 +2,6 @@
   "title": "Kelpstone Player User",
   "type": "object",
   "description": "A set of data exclusive to user profiles for APIs related to the Kelpstone minecraft server.",
-  "x-tags": [
-    "kelpstone"
-  ],
   "properties": {
     "record": {
       "$ref": "../helpers/RecordNumber.json"

@@ -1,8 +1,5 @@
 {
   "title": "Owner UUI Reference",
-  "x-tags": [
-    "helpers"
-  ],
   "description": "If your fetching, this will contain a `UniversalUserIdentifier` schema, optionally when using updating methods you can simply reference the record number of the object.\n\n*__Note:__ Changing data whilst specifying `UniversalUserIdentifier` as the owner, other than the `id`, will not have any affects to the record.*",
   "allOf": [
     {

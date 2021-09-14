@@ -1,10 +1,6 @@
 {
   "title": "Saved Device",
   "type": "object",
-  "x-tags": [
-    "2fa",
-    "global"
-  ],
   "properties": {
     "record": {
       "$ref": "../../../helpers/RecordNumber.json"

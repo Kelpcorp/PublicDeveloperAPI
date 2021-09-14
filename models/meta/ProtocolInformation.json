@@ -1,9 +1,6 @@
 {
   "title": "Protocol Information",
   "type": "object",
-  "x-tags": [
-    "meta"
-  ],
   "properties": {
     "record": {
       "$ref": "./helpers/RecordNumber.json"

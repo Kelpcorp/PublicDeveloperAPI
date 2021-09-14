@@ -3,9 +3,6 @@
   "type": "object",
   "description": "An array's object for name change history, replys with a result from Mojang's public API or Kelpstone's cached copy.",
   "examples": [],
-  "x-tags": [
-    "kelpstone"
-  ],
   "properties": {
     "record": {
       "$ref": "../helpers/RecordNumber.json"

@@ -8,9 +8,6 @@
       "userName": "maccaroon2910"
     }
   ],
-  "x-tags": [
-    "global"
-  ],
   "properties": {
     "record": {
       "$ref": "../helpers/RecordNumber.json"

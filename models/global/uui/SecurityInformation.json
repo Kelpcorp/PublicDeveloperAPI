@@ -1,10 +1,6 @@
 {
   "title": "Security Information",
   "type": "object",
-  "x-tags": [
-    "uui",
-    "global"
-  ],
   "properties": {
     "record": {
       "$ref": "../../helpers/RecordNumber.json"
