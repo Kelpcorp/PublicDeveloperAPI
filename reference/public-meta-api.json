@@ -1,0 +1,122 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Public Meta API",
+    "version": "1.0",
+    "summary": "View the details from this subbranch of the Public Developer API, including phasing stages and endpoints.",
+    "contact": {
+      "name": "Nathanna (a.k.a. \"Piggy\" or \"Tonya)",
+      "url": "https://kelpstone.com/forums/players/pigerly/dm?from=apisite&subject=Your%20title%20here.%20%28API%20Inquiry%29&placeholder_2=Describe%20the%20problem%20with%20detail%20and%20show%20code%20or%20urls%20used%20to%20enduce%20the%20API%20erro.%20If%20your%20using%20a%20authorized%20API%2C%20theres%20no%20need%20to%20include%20the%20keys%20or%20values%2C%20unless%20your%20using%20someone%20elses%20Kelpauth%20account%2C%20it%20is%20linked%20to%20your%20Kelpforums%20account."
+    },
+    "termsOfService": "https://kelpstone.com/legal/policies/terms-of-service",
+    "license": {
+      "name": "GNU AGPLv3",
+      "identifier": "AGPL-3.0-or-later"
+    },
+    "description": "Welcome to the first public facing API for the entire Kelpstone/Kelpcorp francise, including but not limited to, statistics, account data, achievements, quests, forums, linked accounts and so much more. Here are the details for this branch of the API.\n\n| Property     | Boolean |\n| ------------ | ------  |\n| Maintained   | True    |\n| Supported    | True    |\n| Trial Stage  | Alpha   |\n\n<p align=\"center\">Latest Phase Information: <a href=\"https://api.kelpstone.com/v1/\">AS JSON</a></p>"
+  },
+  "servers": [
+    {
+      "url": "http://api.kelpstone.com/public/v1",
+      "description": "Primary"
+    },
+    {
+      "url": "https://api.kelpstone.com/public/v1",
+      "description": "Secondary (Primary SSL)"
+    },
+    {
+      "url": "https://maintenance.kelpstone.com/api/v1",
+      "description": "Maintenance Backup Cache (Previously Executed Requests Only)"
+    }
+  ],
+  "components": {
+    "securitySchemes": {},
+    "schemas": {},
+    "requestBodies": {},
+    "parameters": {}
+  },
+  "tags": [
+    {
+      "name": "v1"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Fetch Protocol Information",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Returns information relative to support activity and maintenance status of the V1 API architecture.",
+                  "properties": {
+                    "result": {
+                      "$ref": "../models/meta/ProtocolInformation.json"
+                    },
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  },
+                  "required": [
+                    "result",
+                    "error"
+                  ],
+                  "readOnly": true
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "result": {
+                        "protocol": {
+                          "identifier": "string",
+                          "name": "string",
+                          "subversions": [
+                            "1.0.0",
+                            "1.0.1",
+                            "1.0.2",
+                            "1.0.3",
+                            "1.0.4"
+                          ]
+                        },
+                        "support": {
+                          "cycleStart": "2014-08-29 16:19:50",
+                          "notRecommended": "2009-09-14 11:27:06",
+                          "onlyCriticalBugs": "2016-10-29 01:32:34",
+                          "cycleEnd": "2023-02-18 23:32:16"
+                        },
+                        "latest": true
+                      },
+                      "error": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "fetch-protocol-info",
+        "description": "Returns information relative to meta details, support expectancy and maintenance status of the v1 architecture.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2021-09-14"
+            },
+            "in": "query",
+            "name": "check",
+            "description": "What date to parse as the current date for the returning data.",
+            "allowEmptyValue": true
+          }
+        ],
+        "security": []
+      },
+      "parameters": []
+    }
+  },
+  "security": []
+}
