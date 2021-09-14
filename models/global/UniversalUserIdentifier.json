@@ -1,5 +1,5 @@
 {
-  "title": "UniversalUserIdentifier",
+  "title": "Universal User Identifier",
   "type": "object",
   "description": "An identifier string & object for all Kelp-anything related profiles, used to aim back to a global stem account.",
   "examples": [
@@ -38,13 +38,12 @@
       }
     }
   ],
+  "x-tags": [
+    "global"
+  ],
   "properties": {
     "record": {
-      "type": "number",
-      "example": 18233,
-      "default": 0,
-      "description": "A schema-unique identifier for internal databases and body object referencing methods.",
-      "readOnly": true
+      "$ref": "../helpers/RecordNumber.json"
     },
     "userName": {
       "type": "string",
@@ -74,14 +73,14 @@
             "currentDevices": {
               "type": "array",
               "items": {
-                "$ref": "./CurrentlySavedDevice.json"
+                "$ref": "./uui/2FA/SavedDevice.json"
               },
               "readOnly": true
             },
             "2faOptions": {
               "type": "array",
               "items": {
-                "$ref": "./2faDestinationInsert.json"
+                "$ref": "./uui/2FA/2FADestination.json"
               },
               "readOnly": true
             }
@@ -95,8 +94,5 @@
     "record",
     "userName",
     "security"
-  ],
-  "x-tags": [
-    "global"
   ]
 }

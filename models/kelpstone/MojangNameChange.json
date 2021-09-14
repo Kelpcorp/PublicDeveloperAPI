@@ -1,0 +1,74 @@
+{
+  "title": "Mojang Name Change",
+  "type": "object",
+  "description": "An array's object for name change history, replys with a result from Mojang's public API or Kelpstone's cached copy.",
+  "examples": [],
+  "x-tags": [
+    "kelpstone"
+  ],
+  "properties": {
+    "record": {
+      "$ref": "../helpers/RecordNumber.json"
+    },
+    "names": {
+      "type": "object",
+      "properties": {
+        "standard": {
+          "type": "string",
+          "description": "The player's all lowercase username on Mojang/Minecraft's internal servers.",
+          "maxLength": 16,
+          "example": "xx_pricesscupcake_xx",
+          "readOnly": true
+        },
+        "customized": {
+          "type": "string",
+          "description": "The player's name stylized with their choice of capitalization. Defaults from the capitalization from their Minecraft username or Kelpstone nickname.",
+          "maxLength": 16,
+          "example": "xX_PricessCupcake_Xx",
+          "readOnly": true
+        }
+      },
+      "readOnly": true
+    },
+    "previous": {
+      "$ref": "../helpers/ChronologyMNHReference.json"
+    },
+    "next": {
+      "$ref": "../helpers/ChronologyMNHReference.json"
+    },
+    "dateline": {
+      "type": "object",
+      "description": "Where the entry resides in the history of a player's Mojang identity history.",
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Either a timestamp or null if it was the original name created with the account.\n\nMojang does not provide a date for account creation because of their security questions using it as a form of validation.",
+          "readOnly": true
+        },
+        "end": {
+          "type": [
+            "string",
+            "boolean"
+          ],
+          "description": "Either a Timestamp or \"true\" if still using.",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    }
+  },
+  "required": [
+    "record",
+    "previous",
+    "next",
+    "dateline"
+  ]
+}

@@ -1,26 +1,16 @@
 {
-  "title": "KelpstonePlayerUser",
+  "title": "Kelpstone Player User",
   "type": "object",
   "description": "A set of data exclusive to user profiles for APIs related to the Kelpstone minecraft server.",
+  "x-tags": [
+    "kelpstone"
+  ],
   "properties": {
     "record": {
-      "type": "integer",
-      "description": "A schema-unique identifier for internal databases and body object referencing methods.",
-      "example": 283811,
-      "readOnly": true
+      "$ref": "../helpers/RecordNumber.json"
     },
-    "stem": {
-      "allOf": [
-        {
-          "type": "string",
-          "description": "(POST Only) A record identifier for UniversalUserIdentifier.",
-          "behavior": "Read/Write"
-        },
-        {
-          "$ref": "./UniversalUserIdentifier.json"
-        }
-      ],
-      "description": "If your using `GET` this will contain a UUI schema, optionally when using `POST` you can reference the record number of the UUI to simply things.\n\n*__Note:__ Changing data inside the `POST`'s `UniversalUserIdentifier` other than the `id` will not having any affects on the record.*"
+    "owner": {
+      "$ref": "../helpers/OwnerUUIReference.json"
     },
     "name": {
       "type": "object",
@@ -54,10 +44,7 @@
   },
   "required": [
     "record",
-    "stem",
+    "owner",
     "name"
-  ],
-  "x-tags": [
-    "kelpstone"
   ]
 }

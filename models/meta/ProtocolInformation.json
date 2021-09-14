@@ -1,0 +1,131 @@
+{
+  "title": "Protocol Information",
+  "type": "object",
+  "x-tags": [
+    "meta"
+  ],
+  "properties": {
+    "record": {
+      "$ref": "./helpers/RecordNumber.json"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subversions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "example": "1.0.3",
+            "format": "version",
+            "pattern": "^[0-9._-]+",
+            "minLength": 5,
+            "default": "1.0.3",
+            "readOnly": true
+          },
+          "readOnly": true
+        },
+        "urls": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "example": "https://api.kelpstone.com/v1"
+          },
+          "readOnly": true
+        }
+      },
+      "required": [
+        "identifier",
+        "name",
+        "subversions"
+      ]
+    },
+    "support": {
+      "type": "object",
+      "required": [
+        "cycleStart",
+        "notRecommended",
+        "onlyCriticalBugs",
+        "cycleEnd"
+      ],
+      "properties": {
+        "cycleStart": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "notRecommended": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "readOnly": true
+        },
+        "onlyCriticalBugs": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "readOnly": true
+        },
+        "cycleEnd": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "readOnly": true
+        }
+      },
+      "readOnly": true
+    },
+    "latest": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Checks if the protocol is the latest recommended version, excludes beta programs and enterprise/ custom versions of the Kelpcorp API.",
+      "readOnly": true
+    }
+  },
+  "required": [
+    "record",
+    "support",
+    "latest"
+  ],
+  "examples": [
+    {
+      "record": 23811,
+      "meta": {
+        "identifier": "v1.0",
+        "name": "Vesion 1.0",
+        "subversions": [
+          "1.0.1",
+          "1.0.2",
+          "1.0.3"
+        ],
+        "urls": [
+          "https://api.kelpstone.com/v1",
+          "https://maintenance.kelpstone.com/lda/v1"
+        ]
+      },
+      "support": {
+        "cycleStart": "2019-08-24T14:15:22Z",
+        "notRecommended": "2019-08-24T14:15:22Z",
+        "onlyCriticalBugs": "2019-08-24T14:15:22Z",
+        "cycleEnd": "2019-08-24T14:15:22Z"
+      },
+      "latest": true
+    }
+  ]
+}

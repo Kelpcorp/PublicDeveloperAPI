@@ -1,0 +1,13 @@
+{
+  "type": [
+    "integer",
+    "string"
+  ],
+  "title": "Record Number",
+  "x-tags": [
+    "helpers"
+  ],
+  "description": "A schema-unique identifier for internal databases and body object referencing methods.",
+  "example": 23811,
+  "readOnly": true
+}

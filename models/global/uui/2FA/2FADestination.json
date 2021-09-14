@@ -1,27 +1,18 @@
 {
-  "title": "2faDestination",
+  "title": "2FA Destination",
   "type": "object",
   "description": "A two fractor authorization routing destination array object, used internally and semi-externally by the Kelpauth software family. ",
   "examples": [],
+  "x-tags": [
+    "2fa",
+    "global"
+  ],
   "properties": {
     "record": {
-      "type": "integer",
-      "example": 29319,
-      "description": "A schema-unique identifier for internal databases and body object referencing methods.",
-      "readOnly": true
+      "$ref": "../../../helpers/RecordNumber.json"
     },
     "owner": {
-      "description": "If your using `GET` this will contain a UUI schema, optionally when using `POST` you can reference the record number of the UUI to simply things.\n\n*__Note__: Changing data inside the `POST`'s `UniversalUserIdentifier` other than the `id` will not having any affects on the record.*",
-      "allOf": [
-        {
-          "type": "string",
-          "description": "You can either use the record id from a UniversalUserIdentifier query if using POST, or use the data inside this object with the UniversalUserIdentifier schema when using GET.",
-          "behavior": "Read Only"
-        },
-        {
-          "$ref": "./UniversalUserIdentifier.json"
-        }
-      ]
+      "$ref": "../../../helpers/OwnerUUIReference.json"
     },
     "hasAccess": {
       "type": "boolean",
@@ -72,8 +63,7 @@
       "type": "object",
       "description": "You can ignore this, unless for some odd reason you'd like to use this data for your own personal caching purpouses. 😏",
       "required": [
-        "external_2fa_query_method",
-        "external_2fa_query_method - copy"
+        "external_2fa_query_method"
       ],
       "properties": {
         "external_2fa_query_method": {
@@ -81,23 +71,9 @@
           "example": 3,
           "description": "Tells the internal website system which API to query to generate or confirm the authentication code.",
           "readOnly": true
-        },
-        "external_2fa_query_method - copy": {
-          "type": "integer",
-          "example": 3,
-          "description": "Tells the internal website system which API to query to generate or confirm the authentication code.",
-          "readOnly": true
         }
       },
       "readOnly": true
-    },
-    "example": {
-      "type": "object",
-      "properties": {
-        "": {
-          "type": "string"
-        }
-      }
     }
   },
   "required": [
@@ -105,9 +81,5 @@
     "owner",
     "hasAccess",
     "internal_metadata"
-  ],
-  "x-tags": [
-    "2fa",
-    "global"
   ]
 }
