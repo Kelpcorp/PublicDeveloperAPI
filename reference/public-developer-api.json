@@ -501,6 +501,35 @@
         },
         "title": "2faDestination"
       }
+    },
+    "requestBodies": {},
+    "parameters": {
+      "Client": {
+        "name": "client",
+        "in": "query",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid",
+          "minLength": 32,
+          "maxLength": 36
+        },
+        "description": "Your developer applications public client identifier, normally formatted with UUID.\n\n**__Note:__ You do not need to include the dash seperaters in the UUID."
+      },
+      "Signature": {
+        "name": "signature",
+        "in": "query",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "md5",
+          "example": "202cb962ac59075b964b07152d234b70",
+          "minLength": 32,
+          "maxLength": 32,
+          "pattern": "^[A-Za-z0-9]+"
+        },
+        "description": "A blob of yml formatted following the guide md5 hashed with your application's private key."
+      }
     }
   },
   "security": [
@@ -670,11 +699,34 @@
           {
             "schema": {
               "type": "string",
-              "format": "date"
+              "format": "date",
+              "example": "2021-09-14"
             },
             "in": "query",
             "name": "check",
-            "description": "What date to parse as the current date for the returning data."
+            "description": "What date to parse as the current date for the returning data.",
+            "allowEmptyValue": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "2c8d613d-80dd-439d-9d7f-4a5ea4de68f3"
+            },
+            "in": "query",
+            "name": "client",
+            "required": true,
+            "description": "Your developer application's "
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "202cb962ac59075b964b07152d234b70",
+              "format": "md5"
+            },
+            "in": "query",
+            "name": "signature",
+            "required": true
           }
         ]
       },
