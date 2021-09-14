@@ -9,6 +9,10 @@
     },
     "names": {
       "type": "object",
+      "required": [
+        "standard",
+        "customized"
+      ],
       "properties": {
         "standard": {
           "type": "string",
@@ -64,6 +68,7 @@
   },
   "required": [
     "record",
+    "names",
     "previous",
     "next",
     "dateline"
