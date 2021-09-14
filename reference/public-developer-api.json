@@ -706,27 +706,6 @@
             "name": "check",
             "description": "What date to parse as the current date for the returning data.",
             "allowEmptyValue": true
-          },
-          {
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "example": "2c8d613d-80dd-439d-9d7f-4a5ea4de68f3"
-            },
-            "in": "query",
-            "name": "client",
-            "required": true,
-            "description": "Your developer application's "
-          },
-          {
-            "schema": {
-              "type": "string",
-              "example": "202cb962ac59075b964b07152d234b70",
-              "format": "md5"
-            },
-            "in": "query",
-            "name": "signature",
-            "required": true
           }
         ]
       },
