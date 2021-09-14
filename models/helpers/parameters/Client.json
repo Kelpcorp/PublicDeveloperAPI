@@ -8,5 +8,5 @@
     "minLength": 32,
     "maxLength": 36
   },
-  "description": "Your developer applications public client identifier, normally formatted with UUID.**__Note:__ You do not need to include the dash separators in the UUID.**"
+  "description": "Your developer applications public client identifier, normally formatted with UUID.\n\n**__Note:__ You do not need to include the dash separators in the UUID.**"
 }
