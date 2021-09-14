@@ -1,0 +1,10 @@
+{
+  "name": "record",
+  "in": "path",
+  "required": true,
+  "schema": {
+    "type": "integer",
+    "example": 18318
+  },
+  "description": "A schema-unique identifier for internal databases and body object referencing methods."
+}

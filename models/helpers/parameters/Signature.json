@@ -1,0 +1,14 @@
+{
+  "name": "signature",
+  "in": "query",
+  "required": true,
+  "schema": {
+    "type": "string",
+    "format": "md5",
+    "example": "202cb962ac59075b964b07152d234b70",
+    "minLength": 32,
+    "maxLength": 32,
+    "pattern": "^[A-Za-z0-9]+"
+  },
+  "description": "A blob of yml formatted following the guide md5 hashed with your application's private key."
+}

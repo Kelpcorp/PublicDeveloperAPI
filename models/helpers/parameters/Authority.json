@@ -1,0 +1,9 @@
+{
+  "name": "Authority",
+  "in": "header",
+  "required": false,
+  "schema": {
+    "type": "string"
+  },
+  "description": "​User-authorized scoped tokens which allow developer applications to edit and acess secret or protected information from or to a users profile, settings and content."
+}

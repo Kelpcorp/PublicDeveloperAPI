@@ -51,7 +51,7 @@
           "minLength": 32,
           "maxLength": 36
         },
-        "description": "Your developer applications public client identifier, normally formatted with UUID.**__Note:__ You do not need to include the dash separators in the UUID.**"
+        "description": "Your developer applications public client identifier, normally formatted with UUID.\n\n**__Note:__ You do not need to include the dash separators in the input.**"
       },
       "Signature": {
         "name": "signature",
@@ -224,10 +224,10 @@
         "description": "Returns a list of all record identification numbers for member list purpouses.",
         "parameters": [
           {
-            "$ref": "#/components/parameters/Client"
+            "$ref": "../models/helpers/parameters/Client.json"
           },
           {
-            "$ref": "#/components/parameters/Signature"
+            "$ref": "../models/helpers/parameters/Signature.json"
           }
         ]
       },
@@ -264,16 +264,16 @@
         "operationId": "fetch-global-account",
         "parameters": [
           {
-            "$ref": "#/components/parameters/Client"
+            "$ref": "../models/helpers/parameters/Client.json"
           },
           {
-            "$ref": "#/components/parameters/Signature"
+            "$ref": "../models/helpers/parameters/Signature.json"
           }
         ]
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/Record"
+          "$ref": "../models/helpers/parameters/Record.json"
         }
       ],
       "patch": {
@@ -281,10 +281,10 @@
         "operationId": "update-global-account",
         "parameters": [
           {
-            "$ref": "#/components/parameters/Client"
+            "$ref": "../models/helpers/parameters/Client.json"
           },
           {
-            "$ref": "#/components/parameters/Signature"
+            "$ref": "../models/helpers/parameters/Signature.json"
           }
         ]
       }
@@ -292,7 +292,7 @@
     "/accounts/{record}/security": {
       "parameters": [
         {
-          "$ref": "#/components/parameters/Record"
+          "$ref": "../models/helpers/parameters/Record.json"
         }
       ],
       "get": {
