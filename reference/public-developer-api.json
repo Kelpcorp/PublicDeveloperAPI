@@ -564,7 +564,7 @@
   "paths": {
     "/": {
       "get": {
-        "summary": "Protocol Information",
+        "summary": "Fetch Protocol Information",
         "responses": {
           "200": {
             "description": "OK",
@@ -711,7 +711,7 @@
             }
           }
         },
-        "operationId": "get-protocol-info",
+        "operationId": "fetch-protocol-info",
         "description": "Returns information relative to meta details, support expectancy and maintenance status of the v1 architecture.",
         "security": [],
         "parameters": [
@@ -766,7 +766,7 @@
             }
           }
         },
-        "operationId": "get-users",
+        "operationId": "list-global-accounts",
         "description": "Returns a list of all record identification numbers for member list purpouses.",
         "parameters": [
           {
@@ -781,7 +781,7 @@
     },
     "/accounts/{record}": {
       "get": {
-        "summary": "Get Global Account",
+        "summary": "Fetch Global Account",
         "tags": [],
         "responses": {
           "200": {
@@ -807,7 +807,7 @@
             }
           }
         },
-        "operationId": "get-global-account",
+        "operationId": "fetch-global-account",
         "parameters": [
           {
             "$ref": "#/components/parameters/Client"
@@ -823,8 +823,8 @@
         }
       ],
       "patch": {
-        "summary": "Edit Global Account",
-        "operationId": "patch-global-account",
+        "summary": "Update Global Account",
+        "operationId": "update-global-account",
         "parameters": [
           {
             "$ref": "#/components/parameters/Client"
@@ -833,6 +833,23 @@
             "$ref": "#/components/parameters/Signature"
           }
         ]
+      }
+    },
+    "/accounts/{record}/security": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Record"
+        }
+      ],
+      "get": {
+        "summary": "Fetch Global Account Security",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-global-account-security"
       }
     }
   }

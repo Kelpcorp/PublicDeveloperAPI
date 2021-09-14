@@ -1,9 +1,6 @@
 {
   "title": "SavedDevice",
   "type": "object",
-  "x-tags": [
-    "v1/global/2fa"
-  ],
   "properties": {
     "record": {
       "type": "integer",
@@ -14,5 +11,9 @@
   },
   "required": [
     "record"
+  ],
+  "x-tags": [
+    "2fa",
+    "global"
   ]
 }

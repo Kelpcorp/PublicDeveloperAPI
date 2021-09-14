@@ -31,9 +31,6 @@
       }
     }
   ],
-  "x-tags": [
-    "v1/global/mojang"
-  ],
   "properties": {
     "record": {
       "type": "number",
@@ -92,5 +89,8 @@
     "name",
     "nameFancy",
     "dateline"
+  ],
+  "x-tags": [
+    "kelpstone"
   ]
 }

@@ -2,9 +2,6 @@
   "title": "UniversalUserIdentifier",
   "type": "object",
   "description": "An identifier string & object for all Kelp-anything related profiles, used to aim back to a global stem account.",
-  "x-tags": [
-    "v1/global"
-  ],
   "examples": [
     {
       "record": 18233,
@@ -98,5 +95,8 @@
     "record",
     "userName",
     "security"
+  ],
+  "x-tags": [
+    "global"
   ]
 }
