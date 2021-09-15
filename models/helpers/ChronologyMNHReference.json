@@ -2,12 +2,13 @@
   "description": "If your fetching, this will contain a `MojangNameChange` schema, optionally when using updating methods you can simply reference the record number of the object.\n\n*__Note:__ Changing data whilst specifying `MojangNameChange` as the owner, other than the `id`, will not have any affects to the record.*",
   "title": "Chronology MNC Reference",
   "examples": [],
-  "allOf": [
-    {
+  "type": "object",
+  "properties": {
+    "*": {
       "$ref": "./RecordNumber.json"
     },
-    {
+    " *": {
       "$ref": "../kelpstone/MojangNameChange.json"
     }
-  ]
+  }
 }
