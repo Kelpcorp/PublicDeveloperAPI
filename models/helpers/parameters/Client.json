@@ -5,8 +5,7 @@
   "schema": {
     "type": "string",
     "format": "uuid",
-    "minLength": 32,
-    "maxLength": 36
+    "example": "04c5c4d5-5382-4c24-b226-c9c4981c7dcb"
   },
-  "description": "Your developer applications public client identifier, normally formatted with UUID.\n\n*__Note:__ You do not need to include the dash separators in the UUID.*"
+  "description": "Your developer applications public client identifier, normally a randomly generated UUID. If it is a UUID, you do not need to include the dash separators."
 }

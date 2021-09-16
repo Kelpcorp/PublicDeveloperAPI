@@ -3,7 +3,15 @@
   "in": "header",
   "required": false,
   "schema": {
-    "type": "string"
+    "type": [
+      "array",
+      "string"
+    ],
+    "format": "bearer",
+    "items": {
+      "type": "string",
+      "format": "bearer"
+    }
   },
-  "description": "​User-authorized scoped tokens which allow developer applications to edit and acess secret or protected information from or to a users profile, settings and content."
+  "description": "Optionally, one or more user authorized scoped bearer tokens. These allow developer applications to edit and acess privated or secured information from or to a users profile, settings and content."
 }

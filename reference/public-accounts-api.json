@@ -35,7 +35,7 @@
         "name": "Authority",
         "type": "apiKey",
         "in": "header",
-        "description": "### Only With The Signature\n**QUERY ONLY** - The signature paramater allows input of a string containing alphabetically formatted properties from the request, encrypted using your developer application's private key. The server generates a hash from the properties on the backend and verifies the signature before continuing with the exchange.\n#### Definition\nYou will need to use `?signature=` to supply your developer app's md5-encoded signature blob, and `?client=` to supply the public key. To read how to generate and format one go to the page [Security Signatures 101]() and follow the steps for your language.\n\n*Unlike user tokens, you may only supply one developer app token in a signature... for now. 😉*\n\n#### Distrobution\nIn order to get a developer app and the public and private key, you'll need to visit [dap.kelpstone.com (Developer App Portal)](http://dap.kelpstone.com?show=my_apps&tutorial=true), sign into your account and create an application with limited permissions. Unless you want to wait for approval, use the playground permission settings to experiment on your own account.\n\n#### Protocol\nTwo conjoining query additions that you provide when making API calls. Specify the developer app's public key in a query parameter called Client and the hash in a query parameter called Signature.\n\nExample: `?client=123&signature=202cb962ac59075b964b07152d234b70`\n\n### Adding User-Authorized Scopes\n**HEADER ONLY** - ​User-authorized scoped tokens which allow developer applications to edit and acess secret or protected information from or to a users profile, settings and content.\n\n#### Definition\nYou can use either `Authorities` or `Authority` to optionally suply user authorized developer app scope tokens. You can include as many tokens as you need, seperated by a comma. It does not matter which header name you use, both allow for one or more items.\n\n#### Distrobution\nIn order to get your developer app authorized for control over user account details, you'll need to prompt them first. Authorization methods include, prompting them to run a command ingame or redirecting them to an KelpAuth splash screen which allows them to grant the permisions. Both of which will return a token to the iniating api call's host.\n\n#### UProtoco"
+        "description": "### Only With The Signature\n**QUERY ONLY** - The signature paramater allows input of a string containing alphabetically formatted properties from the request, encrypted using your developer application's private key. The server generates a hash from the properties on the backend and verifies the signature before continuing with the exchange.\n#### Definition\nYou will need to use `?signature=` to supply your developer app's md5-encoded signature blob, and `?client=` to supply the public key. To read how to generate and format one go to the page [Security Signatures 101]() and follow the steps for your language.\n\n*Unlike user tokens, you may only supply one developer app token in a signature... for now. 😉*\n\n#### Distrobution\nIn order to get a developer app and the public and private key, you'll need to visit [dap.kelpstone.com (Developer App Portal)](http://dap.kelpstone.com?show=my_apps&tutorial=true), sign into your account and create an application with limited permissions. Unless you want to wait for approval, use the playground permission settings to experiment on your own account.\n\n#### Protocol\nTwo conjoining query additions that you provide when making API calls. Specify the developer app's public key in a query parameter called Client and the hash in a query parameter called Signature.\n\nExample: `?client=123&signature=202cb962ac59075b964b07152d234b70`\n\n### Adding User-Authorized Scopes\n**HEADER ONLY** - ​Optionally, you can add user authorized scoped bearer tokens. These allow developer applications to edit and acess private or secured information from or to a users profile, settings and content.\n\n#### Definition\nYou can use either `Authorities` or `Authority` to optionally suply user authorized developer app scope tokens. You can include as many tokens as you need, seperated by a comma. It does not matter which header name you use, both allow for one or more items.\n\n#### Distrobution\nIn order to get your developer app authorized for control over user account details, you'll need to prompt them first. Authorization methods include, prompting them to run a command ingame or redirecting them to an KelpAuth splash screen which allows them to grant the permisions. Both of which will return a token to the iniating api call's host.\n\n#### Protocol"
       }
     },
     "schemas": {},
@@ -72,9 +72,13 @@
                       }
                     },
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
                   },
+                  "required": [
+                    "error"
+                  ],
                   "readOnly": true
                 },
                 "examples": {
@@ -100,12 +104,14 @@
                   "type": "object",
                   "properties": {
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
                   },
                   "required": [
                     "error"
-                  ]
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -118,12 +124,14 @@
                   "type": "object",
                   "properties": {
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
                   },
                   "required": [
                     "error"
-                  ]
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -136,22 +144,30 @@
                   "type": "object",
                   "properties": {
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
-                  }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "readOnly": true
                 }
               }
             }
           }
         },
         "operationId": "list-global-accounts",
-        "description": "Returns a list of all record identification numbers for member list purpouses.",
+        "description": "Returns a list of all record identification numbers, typically for internal member listing purpouses.\n\n*__Note:__ It does not include any other information, just the database record number. To search for a username or other information, see [SA RID From Query](https://www.www.com).*",
         "parameters": [
           {
             "$ref": "../models/helpers/parameters/Client.json"
           },
           {
             "$ref": "../models/helpers/parameters/Signature.json"
+          },
+          {
+            "$ref": "../models/helpers/parameters/Authority.json"
           }
         ],
         "tags": [
@@ -175,13 +191,14 @@
                       "$ref": "../models/global/StemAccount.json"
                     },
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
                   },
                   "required": [
-                    "result",
                     "error"
-                  ]
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -194,12 +211,14 @@
                   "type": "object",
                   "properties": {
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
                   },
                   "required": [
                     "error"
-                  ]
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -212,12 +231,14 @@
                   "type": "object",
                   "properties": {
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
                   },
                   "required": [
                     "error"
-                  ]
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -230,9 +251,14 @@
                   "type": "object",
                   "properties": {
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
-                  }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -245,6 +271,9 @@
           },
           {
             "$ref": "../models/helpers/parameters/Signature.json"
+          },
+          {
+            "$ref": "../models/helpers/parameters/Authority.json"
           }
         ],
         "tags": [
@@ -265,6 +294,9 @@
           },
           {
             "$ref": "../models/helpers/parameters/Signature.json"
+          },
+          {
+            "$ref": "../models/helpers/parameters/Authority.json"
           }
         ],
         "tags": [
@@ -279,12 +311,14 @@
                   "type": "object",
                   "properties": {
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
                   },
                   "required": [
                     "error"
-                  ]
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -298,12 +332,14 @@
                   "type": "object",
                   "properties": {
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
                   },
                   "required": [
                     "error"
-                  ]
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -316,12 +352,14 @@
                   "type": "object",
                   "properties": {
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
                   },
                   "required": [
                     "error"
-                  ]
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -334,12 +372,14 @@
                   "type": "object",
                   "properties": {
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
                   },
                   "required": [
                     "error"
-                  ]
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -352,9 +392,14 @@
                   "type": "object",
                   "properties": {
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
-                  }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -389,10 +434,10 @@
         }
       ],
       "get": {
-        "summary": "Fetch Stem's Security",
+        "summary": "Fetch SA's Security",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "(`OK`) Your request was approved, and all accessible data for your developer application's permissions was sent back to the querying client within the results property.",
             "content": {
               "application/json": {
                 "schema": {
@@ -402,9 +447,74 @@
                       "$ref": "../models/global/uui/SecurityInformation.json"
                     },
                     "error": {
-                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
                     }
-                  }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "readOnly": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "(`Bad Request`) You are able to execute this action, but you didn't use the right property guide, or you are missing cruticial properties from the records you are referencing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "readOnly": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "(`Unauthorized`) You either, did not include the client id of your developer application, the encrypted signature of the request or a header with one or more user scope bearers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "readOnly": true
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "(`Forbidden`) You have all the necessary prerequisites, headers and tokens, but you are not authorized by the user to use this scope/action on their behalf.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json",
+                      "readOnly": true
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "readOnly": true
                 }
               }
             }
@@ -413,6 +523,168 @@
         "operationId": "get-global-account-security",
         "tags": [
           "Find Specific Account Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "../models/helpers/parameters/Client.json"
+          },
+          {
+            "$ref": "../models/helpers/parameters/Signature.json"
+          },
+          {
+            "$ref": "../models/helpers/parameters/Authority.json"
+          }
+        ]
+      }
+    },
+    "/accounts/query": {
+      "get": {
+        "summary": "Stem # From Field Query",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-accounts-query",
+        "parameters": [
+          {
+            "$ref": "../models/helpers/parameters/Client.json"
+          },
+          {
+            "$ref": "../models/helpers/parameters/Signature.json"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "\"any\"",
+                "QPFMF#Date"
+              ],
+              "example": "\"\""
+            },
+            "in": "query",
+            "name": "forumCreated",
+            "description": "When the users forum/website account was created. A UNIX format 10 to 13 digit timestamp, using the [Query Parameter Field Matching Format]()."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "\"any\"",
+                "QPFMF#Date"
+              ]
+            },
+            "in": "query",
+            "name": "forumLastActive",
+            "description": "The last time they used the website or forums while being logged in. A UNIX format 10 to 13 digit timestamp, using the [Query Parameter Field Matching Format]()."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "\"any\"",
+                "QPFMF#String",
+                "String"
+              ],
+              "example": "\"E@startsWith@Dragon,endsWith@Fire\", \"Mushroomz9_\""
+            },
+            "in": "query",
+            "name": "username",
+            "description": "Their stem username, optionally can be using the [Query Parameter Field Matching Format](). By not using characters inside the format, it will default to the matches exactly option."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "\"any\"",
+                "QPFMF#String",
+                "String"
+              ],
+              "example": "\"E@startsWith@xX\", \"_PattyCakes_\""
+            },
+            "in": "query",
+            "name": "minecraftName",
+            "description": "Their Minecraft username, optionally can be using the [Query Parameter Field Matching Format](). By not using characters inside the format, it will default to the matches exactly option."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "USETAG|E@startsWith@Dragon,endsWith@Fire|M@2399",
+              "default": "USEINT|*",
+              "enum": [
+                "\"any\"",
+                "QPFMF#Discord"
+              ]
+            },
+            "in": "query",
+            "name": "discord",
+            "description": "The identifier snowflake or Tag Name#Number of the account holder, if connected. [Query Parameter Field Matching Format]()."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "default": "\"unset\"",
+              "example": "\"https://cdn.kelpstone.com/v1/avatar/2839829182323/2839829182323.jpeg\"",
+              "enum": [
+                "\"any\"",
+                "\"none\"",
+                "QPFMF#CDN"
+              ]
+            },
+            "in": "query",
+            "name": "profilePicture",
+            "description": "Either \"unset\" for no option (default), \"none\" for no profile picture/default avatar, a Kelpstone CDN number for a specific uploaded image match, or a url to a Kelpstone CDN or Imgur link."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "\"any\"",
+                "QPFMF#Date"
+              ]
+            },
+            "in": "query",
+            "name": "minecraftFirstJoin",
+            "description": "A UNIX format 10 to 13 digit timestamp, using the [Query Parameter Field Matching Format]()."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "\"any\"",
+                "QPFMF#Date"
+              ]
+            },
+            "in": "query",
+            "name": "minecraftLastJoin",
+            "description": "A UNIX format 10 to 13 digit timestamp, using the [Query Parameter Field Matching Format]()."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "\"any\"",
+                "QPFMF#Date"
+              ]
+            },
+            "in": "query",
+            "name": "forumLastCommented",
+            "description": "A UNIX format 10 to 13 digit timestamp, using the [Query Parameter Field Matching Format]()."
+          },
+          {
+            "schema": {
+              "type": "boolean",
+              "enum": [
+                "true",
+                "false"
+              ],
+              "default": "false "
+            },
+            "in": "query",
+            "name": "useHistory",
+            "required": true,
+            "description": "Wether to use the history of Mojang/Kelpstone name changes, discord reconnections, etc to evaluate matches. This does not apply to activity-related timestamp fields."
+          },
+          {
+            "$ref": "../models/helpers/parameters/Authority.json"
+          }
         ]
       }
     }
