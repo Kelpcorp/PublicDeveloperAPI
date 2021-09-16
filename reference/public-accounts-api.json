@@ -55,10 +55,7 @@
   "paths": {
     "/accounts": {
       "get": {
-        "summary": "List Global Accounts",
-        "tags": [
-          "account-index"
-        ],
+        "summary": "List All Global Accounts",
         "responses": {
           "200": {
             "description": "OK",
@@ -106,6 +103,9 @@
           {
             "$ref": "../models/helpers/parameters/Signature.json"
           }
+        ],
+        "tags": [
+          "Find & List Accounts"
         ]
       },
       "parameters": []
