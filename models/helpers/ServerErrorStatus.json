@@ -1,9 +1,13 @@
 {
-  "type": "boolean",
+  "type": [
+    "boolean",
+    "string"
+  ],
   "title": "Server Error Status",
-  "description": "Responds with boolean depending on if the backend servers ran into an error with the parameters or permissions checks.",
-  "readOnly": true,
+  "description": "Responds with false or the error code depending on if the backend servers ran into an error with the parameters or permissions checks.",
   "examples": [
-    false
-  ]
+    false,
+    "OUTOFBOUNDS_ARRAY_SPECIFIER"
+  ],
+  "readOnly": true
 }

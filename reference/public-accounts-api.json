@@ -58,8 +58,7 @@
         "summary": "List All Stem Accounts",
         "responses": {
           "200": {
-            "description": "OK",
-            "headers": {},
+            "description": "(`OK`) Your request was approved, and all accessible data for your developer application's permissions was sent back to the querying client within the results property.",
             "content": {
               "application/json": {
                 "schema": {
@@ -92,6 +91,57 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "(`Bad Request`) You are able to execute this action, but you didn't use the right property guide, or you are missing cruticial properties from the records you are referencing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "(`Unauthorized`) You either, did not include the client id of your developer application, the encrypted signature of the request or a header with one or more user scope bearers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "(`Forbidden`) You have all the necessary prerequisites, headers and tokens, but you are not authorized by the user to use this scope/action on their behalf.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "list-global-accounts",
@@ -115,14 +165,14 @@
         "summary": "Fetch Stem Account",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "(`OK`) Your request was approved, and all accessible data for your developer application's permissions was sent back to the querying client within the results property.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "result": {
-                      "$ref": "../models/global/UniversalUserIdentifier.json"
+                      "$ref": "../models/global/StemAccount.json"
                     },
                     "error": {
                       "$ref": "../models/helpers/ServerErrorStatus.json"
@@ -132,6 +182,57 @@
                     "result",
                     "error"
                   ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "(`Bad Request`) You are able to execute this action, but you didn't use the right property guide, or you are missing cruticial properties from the records you are referencing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "(`Unauthorized`) You either, did not include the client id of your developer application, the encrypted signature of the request or a header with one or more user scope bearers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "(`Forbidden`) You have all the necessary prerequisites, headers and tokens, but you are not authorized by the user to use this scope/action on their behalf.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  }
                 }
               }
             }
@@ -168,7 +269,117 @@
         ],
         "tags": [
           "Find & List Accounts"
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "(`OK`) Your request was approved and all permissible non-read-only properties in the data were saved or changed in the database for the endpoint's data type.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "(`Not Modified`) You are authorized to perform this action on the users behalf, but you did not you didn't change anything or didn't include one or more writable properties.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "(`Bad Request`) You are able to execute this action, but you didn't use the right property guide, or you are missing cruticial properties from the records you are referencing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "(`Unauthorized`) You either, did not include the client id of your developer application, the encrypted signature of the request or a header with one or more user scope bearers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "(`Forbidden`) You have all the necessary prerequisites, headers and tokens, but you are not authorized by the user to use this scope/action on their behalf.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "../models/helpers/ServerErrorStatus.json"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../models/global/StemAccount.json"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "../models/global/StemAccount.json"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "../models/global/StemAccount.json"
+              }
+            }
+          },
+          "description": "Data blob containing changes to any properties that are not read-only; passed through the headers."
+        }
       }
     },
     "/accounts/{record}/security": {

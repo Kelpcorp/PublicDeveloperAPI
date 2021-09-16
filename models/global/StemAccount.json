@@ -1,8 +1,5 @@
 {
-  "type": [
-    "object",
-    "integer"
-  ],
+  "type": "object",
   "title": "Stem Account",
   "description": "An identifier string & object for all Kelp-anything related profiles, used to aim back to a global stem account.",
   "examples": [],

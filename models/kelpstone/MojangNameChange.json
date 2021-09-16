@@ -51,16 +51,18 @@
             "null"
           ],
           "format": "date-time",
-          "description": "Either a timestamp or null if it was the original name created with the account.\n\nMojang does not provide a date for account creation because of their security questions using it as a form of validation.",
+          "description": "Either a timestamp or null if it was the name created with the account.\n\n*__Note:__ Mojang does not provide a date for account creation because they use it for security.*",
+          "example": "2016-03-19 06:05:19",
           "readOnly": true
         },
         "end": {
           "type": [
             "string",
-            "boolean"
+            "null"
           ],
-          "description": "Either a Timestamp or \"true\" if still using.",
+          "description": "Either a timestamp of when it was changed again or null if the player is still using the name.",
           "format": "date-time",
+          "example": "2020-11-05 14:19:19",
           "readOnly": true
         }
       }
