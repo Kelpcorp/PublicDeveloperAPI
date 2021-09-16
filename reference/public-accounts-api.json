@@ -56,7 +56,9 @@
     "/accounts": {
       "get": {
         "summary": "List Global Accounts",
-        "tags": [],
+        "tags": [
+          "account-index"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -111,7 +113,9 @@
     "/accounts/{record}": {
       "get": {
         "summary": "Fetch Global Account",
-        "tags": [],
+        "tags": [
+          "account-index"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -172,7 +176,9 @@
       ],
       "get": {
         "summary": "Fetch Global Account Security",
-        "tags": [],
+        "tags": [
+          "account-subindex"
+        ],
         "responses": {
           "200": {
             "description": "OK",
