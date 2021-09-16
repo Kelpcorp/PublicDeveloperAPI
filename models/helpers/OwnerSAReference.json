@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "title": "Owner SA Reference",
+  "description": "If your fetching, this will contain a `StemAccount` schema, optionally when using updating methods you can simply reference the record number of the object.\n\n*__Note:__ Changing data whilst specifying `StemAccount` as the owner, other than the `id`, will not have any affects to the record.*",
+  "examples": [],
+  "additionalProperties": false,
+  "properties": {
+    "*": {
+      "$ref": "./RecordNumber.json"
+    },
+    " *": {
+      "$ref": "../global/StemAccount.json"
+    }
+  }
+}

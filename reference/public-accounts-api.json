@@ -55,7 +55,7 @@
   "paths": {
     "/accounts": {
       "get": {
-        "summary": "List All Global Accounts",
+        "summary": "List All Stem Accounts",
         "responses": {
           "200": {
             "description": "OK",
@@ -112,7 +112,7 @@
     },
     "/accounts/{record}": {
       "get": {
-        "summary": "Fetch Global Account",
+        "summary": "Fetch Stem Account",
         "responses": {
           "200": {
             "description": "OK",
@@ -156,7 +156,7 @@
         }
       ],
       "patch": {
-        "summary": "Update Global Account",
+        "summary": "Update Stem Account",
         "operationId": "update-global-account",
         "parameters": [
           {
@@ -178,7 +178,7 @@
         }
       ],
       "get": {
-        "summary": "Fetch Global Account Security",
+        "summary": "Fetch Stem's Security",
         "responses": {
           "200": {
             "description": "OK",

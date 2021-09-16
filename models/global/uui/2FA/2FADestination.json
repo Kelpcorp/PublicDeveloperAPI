@@ -8,7 +8,7 @@
       "$ref": "../../../helpers/RecordNumber.json"
     },
     "owner": {
-      "$ref": "../../../helpers/OwnerUUIReference.json"
+      "$ref": "../../../helpers/OwnerSAReference.json"
     },
     "hasAccess": {
       "type": "boolean",

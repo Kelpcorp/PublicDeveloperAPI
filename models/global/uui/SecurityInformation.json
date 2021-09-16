@@ -5,6 +5,9 @@
     "record": {
       "$ref": "../../helpers/RecordNumber.json"
     },
+    "owner": {
+      "$ref": "../../helpers/OwnerSAReference.json"
+    },
     "hasAccess": {
       "type": "boolean",
       "default": false,

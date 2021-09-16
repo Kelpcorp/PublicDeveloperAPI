@@ -1,11 +1,12 @@
 {
-  "title": "Universal User Identifier",
   "type": [
     "object",
     "integer"
   ],
+  "title": "Stem Account",
   "description": "An identifier string & object for all Kelp-anything related profiles, used to aim back to a global stem account.",
   "examples": [],
+  "additionalProperties": false,
   "properties": {
     "record": {
       "$ref": "../helpers/RecordNumber.json"

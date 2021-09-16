@@ -7,7 +7,7 @@
       "$ref": "../helpers/RecordNumber.json"
     },
     "owner": {
-      "$ref": "../helpers/OwnerUUIReference.json"
+      "$ref": "../helpers/OwnerSAReference.json"
     },
     "name": {
       "type": "object",
@@ -28,7 +28,7 @@
         "history": {
           "type": "array",
           "items": {
-            "$ref": ""
+            "$ref": "./MojangNameChange.json"
           },
           "readOnly": true
         }
